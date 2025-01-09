@@ -1,9 +1,9 @@
-from flask import Flask, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import DeclarativeBase
-from flask_login import LoginManager
 from flask_admin import Admin
 from flask_migrate import Migrate
+from flask_login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, redirect, url_for
+from sqlalchemy.orm import DeclarativeBase
 # from livereload import Server
 
 
