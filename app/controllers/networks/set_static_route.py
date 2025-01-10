@@ -2,7 +2,7 @@ from netmiko import ConnectHandler
 
 
 # Cria um rota estatica em um dispositivo Juniper
-def set_router_static(hostname, username, password, network_dest, next_hop):
+def set_static_route(hostname, username, password, network_dest, next_hop):
     router = {
         'device_type': 'juniper',
         'host': hostname,
