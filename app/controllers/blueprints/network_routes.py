@@ -1,13 +1,12 @@
+from app import db
+from app.models import Users, Devices
+from cryptography.fernet import Fernet
+from app.controllers.forms import NetworkForm
 from flask import Blueprint, request, render_template, flash
+from app.controllers.forms.set_static_route_form import StaticRouteForm
 from flask_login import current_user, login_required, fresh_login_required
 from app.controllers.networks import set_interface_unit, \
     get_interface_summary, get_interface_configuration
-
-from app.controllers.forms import NetworkForm
-from app.models import Users, Devices
-from app import db
-
-from cryptography.fernet import Fernet
 
 # Inicializa o Blueprint
 network_bp = Blueprint('network', __name__)
@@ -150,4 +149,45 @@ def interface_unit():
         'route/set_interface_unit.html',
         form=form,
         output=output,
+    )
+
+
+@network_bp.route('/set_static_route', methods=['GET', 'POST'])
+@login_required
+@fresh_login_required
+def set_static_route():
+    form = StaticRouteForm()
+
+    devices = db.session.execute(db.select(Devices)).scalars().all()
+
+    user_decrypted_password = f.decrypt(current_user.password).decode('utf-8')  # noqa: E501
+
+    output = None
+
+    if form.validate_on_submit() and request.method == 'POST':
+        hostname = form.hostname.data
+        username = current_user.username
+        password = user_decrypted_password
+
+        output = get_interface_summary(
+            hostname,
+            username,
+            password,
+            network_destination=form.network_destination.data,
+            next_hop=form.next_hop.data,
+        )
+
+        flash('Comando enviado com sucesso!', category='success')
+
+    else:
+        if form.errors:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    flash(f"Erro no campo {field}: {error}", category='danger')
+
+    return render_template(
+        'route/set_static_route.html',
+        form=form,
+        output=output,
+        devices=devices,
     )
