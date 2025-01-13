@@ -5,8 +5,12 @@ from app.controllers.forms import NetworkForm
 from flask import Blueprint, request, render_template, flash
 from app.controllers.forms.set_static_route_form import StaticRouteForm
 from flask_login import current_user, login_required, fresh_login_required
-from app.controllers.networks import set_interface_unit, \
-    get_interface_summary, get_interface_configuration
+from app.controllers.networks import (
+    get_interface_summary,
+    get_interface_configuration,
+    set_interface_unit,
+    set_static_route
+)
 
 # Inicializa o Blueprint
 network_bp = Blueprint('network', __name__)
@@ -155,7 +159,7 @@ def interface_unit():
 @network_bp.route('/set_static_route', methods=['GET', 'POST'])
 @login_required
 @fresh_login_required
-def set_static_route():
+def set_static_route_page():
     form = StaticRouteForm()
 
     devices = db.session.execute(db.select(Devices)).scalars().all()
@@ -164,16 +168,16 @@ def set_static_route():
 
     output = None
 
-    if form.validate_on_submit() and request.method == 'POST':
-        hostname = form.hostname.data
+    if form.validate_on_submit():
+        hostname = request.form.get('hostname')
         username = current_user.username
         password = user_decrypted_password
+        network_dest = form.network_dest.data+form.prefix_dest.data
+        next_hop = form.next_hop.data
 
-        output = get_interface_summary(
-            hostname,
-            username,
-            password,
-            
+        output = set_static_route(
+            hostname, username, password,
+            network_dest, next_hop,
         )
 
         flash('Comando enviado com sucesso!', category='success')

@@ -9,7 +9,7 @@
 
 <hr>
 
-<form method="POST" action="{{ url_for('network.set_static_route') }}" autocomplete="off">
+<form method="POST" action="{{ url_for('network.set_static_route_page') }}" autocomplete="off">
     {{ form.hidden_tag() }}
 
     <!-- ROW -->
@@ -37,7 +37,7 @@
 
         <!-- next hop -->
         <div class="form-group col">
-            {{ form.network_dest(class="form-control", placeholder="Next-Hop") }}
+            {{ form.next_hop(class="form-control", placeholder="Next-Hop") }}
         </div>
     </div>
 
