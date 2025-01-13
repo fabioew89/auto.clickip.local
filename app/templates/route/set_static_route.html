@@ -7,12 +7,10 @@
 {{ super()}}
 {% endblock %}
 
-
 <hr>
 
 <form method="POST" action="{{ url_for('network.set_static_route') }}" autocomplete="off">
     {{ form.hidden_tag() }}
-
 
     <!-- ROW -->
     <div class="form-row">
@@ -27,10 +25,17 @@
 
     <!-- ROW -->
     <div class="form-row">
+        <!-- network destination -->
         <div class="form-group col">
             {{ form.network_dest(class="form-control", placeholder="Network Destination") }}
         </div>
 
+        <!-- prefix dest -->
+        <div class="form-group col-2">
+            {{ form.prefix_dest(class="form-control") }}
+        </div>
+
+        <!-- next hop -->
         <div class="form-group col">
             {{ form.network_dest(class="form-control", placeholder="Next-Hop") }}
         </div>
@@ -38,6 +43,7 @@
 
     <!-- ROW -->
     <div class="form-row">
+        <!-- Username -->
         <div class="form-group col mb-3">
             <input type="text" class="form-control" value="{{ current_user.username }}" readonly>
         </div>

@@ -173,8 +173,7 @@ def set_static_route():
             hostname,
             username,
             password,
-            network_destination=form.network_destination.data,
-            next_hop=form.next_hop.data,
+            
         )
 
         flash('Comando enviado com sucesso!', category='success')

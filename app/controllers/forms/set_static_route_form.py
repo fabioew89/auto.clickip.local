@@ -12,7 +12,13 @@ class StaticRouteForm(FlaskForm):
     )
     prefix_dest = SelectField(
         'Prefix Destination', validators=[DataRequired()],
-        choices=[('/30', '/30'), ('/29', '/29'), ('/28', '/28')]
+        choices=[
+            ('/48', '/48'),
+            ('/30', '/30'),
+            ('/29', '/29'),
+            ('/28', '/28')
+            ],
+        default='/30'
     )
     next_hop = StringField(
         'Next Hop', validators=[
