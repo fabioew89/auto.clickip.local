@@ -11,5 +11,6 @@ def set_static_route(hostname, username, password, network_dest, next_hop):
     }
     ssh = ConnectHandler(**router)
     output = ssh.send_config_set(f'set routing-options static route {network_dest} next-hop {next_hop}')  # noqa: E501
+    output += ssh.commit()
     ssh.disconnect()
     return output
