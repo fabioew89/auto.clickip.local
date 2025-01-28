@@ -5,7 +5,7 @@ from app.controllers.forms import NetworkForm
 from flask import Blueprint, request, render_template, flash
 from app.controllers.forms.set_static_route_form import StaticRouteForm
 from flask_login import current_user, login_required, fresh_login_required
-from app.controllers.networks import (
+from app.controllers.netmiko import (
     get_interface_summary,
     get_interface_configuration,
     set_interface_unit,
