@@ -1,5 +1,5 @@
 from app import db, admin
-from app.models import Users, Devices
+from app.models import Users, Devices, Switches
 from flask_admin.contrib.sqla import ModelView
 from wtforms import StringField, PasswordField
 from wtforms.validators import DataRequired, \
@@ -71,7 +71,29 @@ class DeviceView(ModelView):
         }
 
 
+class SwitchView(ModelView):
+    can_edit = True
+    can_delete = False
+    can_create = True
+    can_export = True
+    can_view_details = True
+    can_set_page_size = True
+
+    edit_modal = True
+    details_modal = True
+
+    form_extra_fields = {
+        'ip_address': StringField(
+            'IP Address', validators=[
+                InputRequired(),
+                IPAddress(ipv4=True)
+                ]
+            ),
+        }
+
+
 def create_admin():
     admin.name = 'auto.clickip.local'
     admin.add_view(UsersView(Users, db.session))
     admin.add_view(DeviceView(Devices, db.session))
+    admin.add_view(SwitchView(Switches, db.session))
