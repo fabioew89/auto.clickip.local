@@ -82,6 +82,8 @@ class SwitchView(ModelView):
     edit_modal = True
     details_modal = True
 
+    column_default_sort = 'hostname'
+
     form_extra_fields = {
         'ip_address': StringField(
             'IP Address', validators=[
