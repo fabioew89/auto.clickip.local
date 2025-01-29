@@ -25,3 +25,13 @@ class Devices(db.Model):
 
     def __repr__(self):
         return self.hostname, self.ip_address
+
+
+class Switches(db.Model):
+    __tablename__ = 'switches'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    hostname = db.Column(db.String, nullable=False)
+    ip_address = db.Column(db.String, nullable=False)
+
+    def __repr__(self):
+        return self.hostname, self.ip_address
