@@ -28,8 +28,7 @@ run: venv install
 clean:
 	@find . -type d -name "__pycache__" -exec rm -rf {} +
 	@find . -type d -name ".pytest_cache" -exec rm -rf {} +
-	@rm -rf $(VENV)
-	@echo "Ambiente virtual removido e caches..."
+	@echo "Cache removido com sucesso."
 
 # faz o test do flake8 no code excluído o venv
 .PHONY: flake
