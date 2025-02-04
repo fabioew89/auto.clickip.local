@@ -1,7 +1,7 @@
-from .set_static_route import set_static_route
-from .set_interface_unit import set_interface_unit
-from .get_interface_summary import get_interface_summary
-from .get_interface_configuration import get_interface_configuration
+from .junos.set_static_route import set_static_route
+from .junos.set_interface_unit import set_interface_unit
+from .junos.get_interface_summary import get_interface_summary
+from .junos.get_interface_configuration import get_interface_configuration
 
 
 __all__ = [
