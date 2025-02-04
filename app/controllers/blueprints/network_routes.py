@@ -55,7 +55,7 @@ def interface_summary():
                     flash(f"Erro no campo {field}: {error}", category='danger')
 
     return render_template(
-        'route/get_interface_summary.html',
+        'junos/get_interface_summary.html',
         form=form,
         output=output,
         devices=devices,
@@ -98,7 +98,7 @@ def interface_configuration():
                     flash(f"Erro no campo {field}: {error}", category='danger')
 
     return render_template(
-        'route/get_interface_configuration.html',
+        'junos/get_interface_configuration.html',
         form=form,
         output=output,
         devices=devices,
@@ -150,7 +150,7 @@ def interface_unit():
                     flash(f"Erro no campo {field}: {error}", category='danger')
 
     return render_template(
-        'route/set_interface_unit.html',
+        'junos/set_interface_unit.html',
         form=form,
         output=output,
     )
@@ -189,7 +189,7 @@ def set_static_route_page():
                     flash(f"Erro no campo {field}: {error}", category='danger')
 
     return render_template(
-        'route/set_static_route.html',
+        'junos/set_static_route.html',
         form=form,
         output=output,
         devices=devices,
