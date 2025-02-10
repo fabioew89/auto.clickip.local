@@ -1,6 +1,8 @@
 from rich import print
 from netmiko import ConnectHandler
-
+"""
+Configura uma VLAN no dispositivo Datacom DMOS.
+"""
 
 def mpls_seg_one(hostname, username, password, vlan, description, ipv4_neighbor): # noqa E501
     switch = {
@@ -8,68 +10,87 @@ def mpls_seg_one(hostname, username, password, vlan, description, ipv4_neighbor)
         'host': hostname,
         'username': username,
         'password': password,
-        'port': 22,
-        'verbose': True,
-        'global_delay_factor': 2,
-        'read_timeout_override': 5,
+        'port': 22,  # Porta SSH padrão
+        'timeout': 30,  # Timeout de 30 segundos para a conexão
+        'session_timeout': 30,  # Tempo máximo para a sessão SSH
     }
 
     try:
         ssh = ConnectHandler(**switch)
         print(f'[green]Conectado ao {hostname}✅[/green]')
 
-        output = ssh.send_command('show mpls l2vpn vpls brief', expect_string=r'#') # noqa E501
+        commands = [
+            'config exclusive',
+            f'mpls l2vpn vpls-group tunnel-{vlan} vpn {description} description "{description}" administrative-status up', # noqa E501
+            f'mpls l2vpn vpls-group tunnel-{vlan} vpn {description} vfi pw-type vlan {vlan} neighbor {ipv4_neighbor} pw-id {vlan} pw-mtu 1600 pw-load-balance flow-label both', # noqa E501
+        ]
 
-        ssh.send_command('config exclusive', expect_string=r'#')
+        for command in commands:
+            output = ssh.send_command(command, expect_string=r'#', read_timeout=15) # noqa E501
 
-        ssh.send_command(  # descricao do VPLS
-            f'mpls l2vpn vpls-group tunnel-{vlan}           \
-                vpn {description}                           \
-                    description "{description}" ;           \
-                administrative-status up', expect_string=r'#'d
-            )
+            # 'config exclusive',
+            # f'mpls l2vpn vpls-group tunnel-{vlan}'           \
+            #     'vpn {description}'                           \
+            #         'description "{description}"' ;           \
+            #     administrative-status up',
+            # f'mpls l2vpn vpls-group tunnel-{vlan}           \
+            #     vpn {description} ;                         \
+            #         vfi                                     \
+            #             pw-type vlan {vlan} ;               \
+            #             neighbor {ipv4_neighbor} pw-id {vlan} ; \
+            #             pw-mtu 1600 ;                       \
+            #             pw-load-balance                     \
+            #                 flow-label both',
+            # f'mpls l2vpn vpls-group tunnel-{vlan}           \
+            #     vpn {description} ;                         \
+            #         bridge-domain                           \
+            #             dot1q {vlan} ;                      \
+            #             access-interface ten-gigabit-ethernet-1/1/1',
+            # 'commit confirmed 3; top',
+        # ]
 
-        ssh.send_command(
-            f'mpls l2vpn vpls-group tunnel-{vlan}           \
-            vpn {description} ;                             \
-                vfi                                         \
-                    pw-type vlan {vlan} ;                   \
-                    neighbor {ipv4_neighbor} pw-id {vlan} ; \
-                    pw-mtu 1600 ;                           \
-                    pw-load-balance                         \
-                        flow-label both', expect_string=r'#'
-            )
+        # output = ssh.send_command('show mpls l2vpn vpls brief', expect_string=r'#') # noqa E501
 
-        ssh.send_command(
-            f'mpls l2vpn vpls-group tunnel-{vlan}           \
-            vpn {description} ;                             \
-                bridge-domain                               \
-                    dot1q {vlan} ;                          \
-                    access-interface ten-gigabit-ethernet-1/1/1', expect_string=r'#' # noqa E501
-            )
+        # ssh.send_command('config exclusive', expect_string=r'#')
 
-        ssh.send_command('commit confirmed 3; top', expect_string=r'#')
+        # ssh.send_command(  # descricao do VPLS
+        #     f'mpls l2vpn vpls-group tunnel-{vlan}           \
+        #         vpn {description}                           \
+        #             description "{description}" ;           \
+        #         administrative-status up', expect_string=r'#'d
+        #     )
 
-        output = ssh.send_command(f'show mpls l2vpn vpls-group brief | include {vlan}', expect_string=r'#') # noqa E501
+        # ssh.send_command(
+        #     f'mpls l2vpn vpls-group tunnel-{vlan}           \
+        #     vpn {description} ;                             \
+        #         vfi                                         \
+        #             pw-type vlan {vlan} ;                   \
+        #             neighbor {ipv4_neighbor} pw-id {vlan} ; \
+        #             pw-mtu 1600 ;                           \
+        #             pw-load-balance                         \
+        #                 flow-label both', expect_string=r'#'
+        #     )
 
-        print(output)
+        # ssh.send_command(
+        #     f'mpls l2vpn vpls-group tunnel-{vlan}           \
+        #     vpn {description} ;                             \
+        #         bridge-domain                               \
+        #             dot1q {vlan} ;                          \
+        #             access-interface ten-gigabit-ethernet-1/1/1', expect_string=r'#' # noqa E501
+        #     )
+
+        # ssh.send_command('commit confirmed 3; top', expect_string=r'#')
+
+        # output = ssh.send_command(f'show mpls l2vpn vpls-group brief | include {vlan}', expect_string=r'#') # noqa E501
+
+        # print(output)
 
     except Exception as e:
         print(f'Erro ao executar comandos:{e}❌')
-        output = None
+        # output = None
 
     finally:
         ssh.disconnect()
         print(f'[yellow]Desconectado do {hostname}⚠️[/yellow]')
 
-    return output
-
-
-mpls_seg_one(
-    hostname='100.127.0.254',
-    username='auto.noc',
-    password='3#ed$32wSEd5',
-    vlan='101',
-    description='NETMIKO',
-    ipv4_neighbor='100.127.0.3',
-)
+    # return output
