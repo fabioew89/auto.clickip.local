@@ -1,5 +1,5 @@
 from app import db, admin
-from app.models import Users, Devices, Switches
+from app.models import Users, Routers, Switches
 from flask_admin.contrib.sqla import ModelView
 from wtforms import StringField, PasswordField
 from wtforms.validators import DataRequired, \
@@ -97,5 +97,5 @@ class SwitchView(ModelView):
 def create_admin():
     admin.name = 'auto.clickip.local'
     admin.add_view(UsersView(Users, db.session))
-    admin.add_view(DeviceView(Devices, db.session))
+    admin.add_view(DeviceView(Routers, db.session))
     admin.add_view(SwitchView(Switches, db.session))

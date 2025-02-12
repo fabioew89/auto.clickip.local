@@ -17,8 +17,8 @@ class Users(db.Model, UserMixin):
         return self.username
 
 
-class Devices(db.Model):
-    __tablename__ = 'devices'
+class Routers(db.Model):
+    __tablename__ = 'routers'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     hostname = db.Column(db.String, nullable=False)
     ip_address = db.Column(db.String, nullable=False)

@@ -1,5 +1,5 @@
 from app import db
-from app.models import Users, Devices
+from app.models import Users, Routers
 from cryptography.fernet import Fernet
 from app.controllers.forms import NetworkForm
 from flask import Blueprint, request, render_template, flash
@@ -25,7 +25,7 @@ f = Fernet(b'bdilxeLGCHnJo-2HtofB9wGcXaUV7D5NZgxh5Nt5fpg=')
 def interface_summary():
     form = NetworkForm()
 
-    devices = db.session.execute(db.select(Devices)).scalars().all()
+    devices = db.session.execute(db.select(Routers)).scalars().all()
 
     current_user_record = db.session.execute(
         db.select(Users).filter_by(username=current_user.username)
@@ -69,7 +69,7 @@ def interface_summary():
 def interface_configuration():
     form = NetworkForm()
 
-    devices = db.session.execute(db.select(Devices)).scalars().all()
+    devices = db.session.execute(db.select(Routers)).scalars().all()
 
     output = None
 
@@ -120,7 +120,7 @@ def interface_unit():
 
     output = None
 
-    hosts = db.session.execute(db.select(Devices).order_by(Devices.id)).scalars()  # noqa: E501
+    hosts = db.session.execute(db.select(Routers).order_by(Routers.id)).scalars()  # noqa: E501
 
     form.hostname.choices = [(host.ip_address, host.hostname) for host in hosts]  # noqa: E501
 
@@ -162,7 +162,7 @@ def interface_unit():
 def set_static_route_page():
     form = StaticRouteForm()
 
-    devices = db.session.execute(db.select(Devices)).scalars().all()
+    devices = db.session.execute(db.select(Routers)).scalars().all()
 
     user_decrypted_password = f.decrypt(current_user.password).decode('utf-8')  # noqa: E501
 
