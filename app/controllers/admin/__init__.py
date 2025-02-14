@@ -94,7 +94,7 @@ class SwitchView(ModelView):
         }
 
 
-def create_admin():
+def flask_admin():
     admin.name = 'auto.clickip.local'
     admin.add_view(UsersView(Users, db.session))
     admin.add_view(DeviceView(Routers, db.session))
