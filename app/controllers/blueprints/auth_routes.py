@@ -1,18 +1,22 @@
-from flask import Blueprint, render_template, redirect, url_for, flash
-from flask_login import login_required, login_user, logout_user
+import os
 from app import db
 from app.models import Users
-from app.controllers.forms import LoginForm
+from dotenv import load_dotenv
 from cryptography.fernet import Fernet
+from app.controllers.forms import LoginForm
+from flask_login import login_required, login_user, logout_user
+from flask import Blueprint, render_template, redirect, url_for, flash
+
+load_dotenv()
 
 auth_bp = Blueprint('auth', __name__)
 
 
 def check_password(stored_password, provided_password):
-    f = Fernet(b'bdilxeLGCHnJo-2HtofB9wGcXaUV7D5NZgxh5Nt5fpg=')
+    fernet_key = Fernet(os.getenv('MY_FERNET_KEY'))
 
     try:
-        decrypted_password = f.decrypt(stored_password).decode('utf-8')
+        decrypted_password = fernet_key.decrypt(stored_password).decode('utf-8')  # noqa: E501
         return decrypted_password == provided_password
     except Exception as e:
         print(f'[Erro] Falha ao verificar a senha: {e}')

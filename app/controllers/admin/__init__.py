@@ -1,10 +1,14 @@
+import os
 from app import db, admin
-from app.models import Users, Routers, Switches
+from dotenv import load_dotenv
+from cryptography.fernet import Fernet
 from flask_admin.contrib.sqla import ModelView
 from wtforms import StringField, PasswordField
-from wtforms.validators import DataRequired, \
-    Length, EqualTo, IPAddress, InputRequired
-from cryptography.fernet import Fernet
+from app.models import Users, Routers, Switches
+from wtforms.validators import DataRequired, Length, \
+    EqualTo, IPAddress, InputRequired
+
+load_dotenv()
 
 
 class UsersView(ModelView):
@@ -43,9 +47,12 @@ class UsersView(ModelView):
     }
 
     def on_model_change(self, form, model, is_created):
-        f = Fernet(b'bdilxeLGCHnJo-2HtofB9wGcXaUV7D5NZgxh5Nt5fpg=')
+        fernet_key = Fernet(os.getenv('MY_FERNET_KEY'))
+        print(os.getenv('MY_FERNET_KEY'))
         if form.password.data:
-            model.password = f.encrypt(form.password.data.encode('utf-8'))
+            model.password = fernet_key.encrypt(
+                form.password.data.encode('utf-8')
+            )
 
 
 class DeviceView(ModelView):

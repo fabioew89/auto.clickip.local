@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from app import db
 from app.models import Users, Routers
 from cryptography.fernet import Fernet
@@ -12,10 +14,12 @@ from app.controllers.netmiko import (
     set_static_route
 )
 
+load_dotenv()
+
 # Inicializa o Blueprint
 network_bp = Blueprint('network', __name__)
 
-f = Fernet(b'bdilxeLGCHnJo-2HtofB9wGcXaUV7D5NZgxh5Nt5fpg=')
+fernet_key = Fernet(os.getenv('MY_FERNET_KEY'))
 
 
 # Rota: get_interface_summary
@@ -31,7 +35,7 @@ def interface_summary():
         db.select(Users).filter_by(username=current_user.username)
     ).scalar_one_or_none()
 
-    user_decrypted_password = f.decrypt(current_user_record.password).decode('utf-8')  # noqa: E501
+    user_decrypted_password = fernet_key.decrypt(current_user_record.password).decode('utf-8')  # noqa: E501
 
     output = None
 
@@ -77,7 +81,7 @@ def interface_configuration():
         db.select(Users).filter_by(username=current_user.username)
     ).scalar_one_or_none()
 
-    user_decrypted_password = f.decrypt(current_user_record.password).decode('utf-8')  # noqa: E501
+    user_decrypted_password = fernet_key.decrypt(current_user_record.password).decode('utf-8')  # noqa: E501
 
     if request.method == 'POST':
         hostname = form.hostname.data
@@ -116,7 +120,7 @@ def interface_unit():
         db.select(Users).filter_by(username=current_user.username)
     ).scalar_one_or_none()
 
-    user_decrypted_password = f.decrypt(current_user_record.password).decode('utf-8')  # noqa: E501
+    user_decrypted_password = fernet_key.decrypt(current_user_record.password).decode('utf-8')  # noqa: E501
 
     output = None
 
@@ -164,7 +168,7 @@ def set_static_route_page():
 
     devices = db.session.execute(db.select(Routers)).scalars().all()
 
-    user_decrypted_password = f.decrypt(current_user.password).decode('utf-8')  # noqa: E501
+    user_decrypted_password = fernet_key.decrypt(current_user.password).decode('utf-8')  # noqa: E501
 
     output = None
 
