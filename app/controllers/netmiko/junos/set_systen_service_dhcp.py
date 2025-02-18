@@ -8,7 +8,7 @@ from netmiko import ConnectHandler
 config_path = os.path.abspath("app/controllers/netmiko/junos")
 sys.path.append(config_path)
 
-def junos_system_service_dhcp(vlan_id, ipv4_gateway, pool_name, network, address_low, address_high):  # noqa E501
+def set_access_address_assignment(vlan_id, ipv4_gateway, pool_name, network, address_low, address_high):  # noqa E501
     """Configura o serviço DHCP no roteador Junos via Netmiko."""
 
     router = {
@@ -65,7 +65,7 @@ def junos_system_service_dhcp(vlan_id, ipv4_gateway, pool_name, network, address
 
 
 # CALL TO ACTION
-junos_system_service_dhcp(
+set_access_address_assignment(
     vlan_id=input('Digite o ID da VLAN: '),
     network=input('Digite o endereço de rede: '),
     ipv4_gateway=input('Digite o gateway IPv4: '),

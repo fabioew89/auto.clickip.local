@@ -23,10 +23,11 @@
             Routers
           </a>
           <div class="dropdown-menu">
-            <a href="{{ url_for('network.interface_summary') }}" class="dropdown-item">Interface Summary</a>
-            <a href="{{ url_for('network.interface_configuration') }}" class="dropdown-item">Interface Configuration</a>
-            <a href="{{ url_for('network.interface_unit') }}" class="dropdown-item">Config Interface Unit Vlan</a>
-            <a href="{{ url_for('network.set_static_route_page') }}" class="dropdown-item">Config Static Router</a>
+            <a href="{{ url_for('network.interface_summary') }}"              class="dropdown-item">Interface Summary</a>
+            <a href="{{ url_for('network.interface_configuration') }}"        class="dropdown-item">Interface Configuration</a>
+            <a href="{{ url_for('network.interface_unit') }}"                 class="dropdown-item">Config Interface Unit Vlan</a>
+            <a href="{{ url_for('network.set_static_route_page') }}"          class="dropdown-item">Config Static Router</a>
+            <a href="{{ url_for('network.set_access_address_assignment_page') }}"  class="dropdown-item">Access Address Assignment</a>
           </div>
         </li>
       </ul>
@@ -47,7 +48,7 @@
   </div>
 
   <!-- Jumbotron -->
-  <div class="jumbotron">
+  <div class="jumbotron" style="box-shadow: 0 .5rem .5rem  lightgray;">
 
     <!-- Flash Messages -->
     {% with messages = get_flashed_messages(with_categories=True) %}

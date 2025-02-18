@@ -1,17 +1,20 @@
 import os
-from dotenv import load_dotenv
 from app import db
+from dotenv import load_dotenv
 from app.models import Users, Routers
 from cryptography.fernet import Fernet
-from app.controllers.forms import NetworkForm
 from flask import Blueprint, request, render_template, flash
-from app.controllers.forms.set_static_route_form import StaticRouteForm
 from flask_login import current_user, login_required, fresh_login_required
+from app.controllers.forms import (
+    NetworkForm,
+    StaticRouteForm,
+    AddressAssignmentForm,
+)
 from app.controllers.netmiko import (
+    set_static_route,
+    set_interface_unit,
     get_interface_summary,
     get_interface_configuration,
-    set_interface_unit,
-    set_static_route
 )
 
 load_dotenv()
@@ -194,6 +197,43 @@ def set_static_route_page():
 
     return render_template(
         'junos/set_static_route.html',
+        form=form,
+        output=output,
+        devices=devices,
+    )
+
+
+@network_bp.route('/set_access_address_assignment_page', methods=['GET', 'POST'])  # noqa: E501
+@login_required
+@fresh_login_required
+def set_access_address_assignment_page():
+    form = AddressAssignmentForm()
+
+    devices = db.session.execute(db.select(Routers)).scalars().all()
+
+    user_decrypted_password = fernet_key.decrypt(current_user.password).decode('utf-8')  # noqa: E501
+
+    output = None
+
+    if form.validate_on_submit():
+        hostname = request.form.get('hostname')
+        username = current_user.username
+        password = user_decrypted_password
+
+        output = set_access_address_assignment_page(
+            hostname, username, password,
+        )
+
+        flash('Comando enviado com sucesso!', category='success')
+
+    else:
+        if form.errors:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    flash(f"Erro no campo {field}: {error}", category='danger')
+
+    return render_template(
+        'junos/set_access_address_assignment.html',
         form=form,
         output=output,
         devices=devices,
