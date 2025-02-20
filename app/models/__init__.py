@@ -35,3 +35,13 @@ class Switches(db.Model):
 
     def __repr__(self):
         return self.hostname, self.ip_address
+
+
+class Olts(db.Model):
+    __tablename__ = 'olts'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    hostname = db.Column(db.String, nullable=False)
+    ip_address = db.Column(db.String, nullable=False)
+
+    def __repr__(self):
+        return self.hostname, self.ip_address

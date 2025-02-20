@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from cryptography.fernet import Fernet
 from flask_admin.contrib.sqla import ModelView
 from wtforms import StringField, PasswordField
-from app.models import Users, Routers, Switches
+from app.models import Users, Routers, Switches, Olts
 from wtforms.validators import DataRequired, Length, \
     EqualTo, IPAddress, InputRequired
 
@@ -101,8 +101,32 @@ class SwitchView(ModelView):
         }
 
 
+class OltView(ModelView):
+    can_edit = True
+    can_delete = False
+    can_create = True
+    can_export = True
+    can_view_details = True
+    can_set_page_size = True
+
+    edit_modal = True
+    details_modal = True
+
+    column_default_sort = 'hostname'
+
+    form_extra_fields = {
+        'ip_address': StringField(
+            'IP Address', validators=[
+                InputRequired(),
+                IPAddress(ipv4=True)
+                ]
+            ),
+        }
+
+
 def flask_admin():
     admin.name = 'auto.clickip.local'
     admin.add_view(UsersView(Users, db.session))
     admin.add_view(DeviceView(Routers, db.session))
     admin.add_view(SwitchView(Switches, db.session))
+    admin.add_view(OltView(Olts, db.session))
