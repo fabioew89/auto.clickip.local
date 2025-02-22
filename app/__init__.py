@@ -52,7 +52,7 @@ def create_app():
     # Basic route for the home page
     @app.route('/')
     def page_home():
-        return redirect(url_for('network.interface_summary'))  # Redirects to the network interface summary page
+        return redirect(url_for('int_summary_bp.interface_summary'))  # Redirects to the network interface summary page
 
     # Livereload configuration for frontend development only
     # server = Server(app.wsgi_app)
