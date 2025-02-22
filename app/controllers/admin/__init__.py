@@ -48,7 +48,6 @@ class UsersView(ModelView):
 
     def on_model_change(self, form, model, is_created):
         fernet_key = Fernet(os.getenv('MY_FERNET_KEY'))
-        print(os.getenv('MY_FERNET_KEY'))
         if form.password.data:
             model.password = fernet_key.encrypt(
                 form.password.data.encode('utf-8')
@@ -73,9 +72,9 @@ class DeviceView(ModelView):
             'IP Address', validators=[
                 InputRequired(),
                 IPAddress(ipv4=True)
-                ]
-            ),
-        }
+            ]
+        ),
+    }
 
 
 class SwitchView(ModelView):
@@ -96,9 +95,9 @@ class SwitchView(ModelView):
             'IP Address', validators=[
                 InputRequired(),
                 IPAddress(ipv4=True)
-                ]
-            ),
-        }
+            ]
+        ),
+    }
 
 
 class OltView(ModelView):
@@ -119,9 +118,9 @@ class OltView(ModelView):
             'IP Address', validators=[
                 InputRequired(),
                 IPAddress(ipv4=True)
-                ]
-            ),
-        }
+            ]
+        ),
+    }
 
 
 def flask_admin():
