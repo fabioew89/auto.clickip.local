@@ -1,37 +1,37 @@
-# Caminho do ambiente virtual
+# Path to the virtual environment
 VENV=.venv
 PYTHON=$(VENV)/bin/python
 PIP=$(VENV)/bin/pip
 
-# Criar o ambiente virtual
+# Create the virtual environment
 .PHONY: venv
 venv:
-	@python3 -m venv $(VENV)
-	@echo "Ambiente virtual criado em $(VENV)"
-	@$(PIP) install --upgrade pip > /dev/null
-	@echo "Pip atualizado."
+	@python3 -m venv $(VENV)  # Creates a virtual environment in the specified directory
+	@echo "Virtual environment created in $(VENV)"
+	@$(PIP) install --upgrade pip > /dev/null  # Upgrades pip inside the virtual environment
+	@echo "Pip updated."
 
-# Instalar dependências usando o ambiente virtual
+# Install dependencies using the virtual environment
 .PHONY: install
 install: venv
-	@$(PIP) install -r requirements.txt > /dev/null
-	@echo "Dependências instaladas."
+	@$(PIP) install -r requirements.txt > /dev/null  # Installs all dependencies listed in requirements.txt
+	@echo "Dependencies installed."
 
-# Rodar a aplicação usando o ambiente virtual
+# Run the application using the virtual environment
 .PHONY: run
 run: venv install
-	@$(PYTHON) -m flask --app run.py run --debug
-	@echo "Aplicação em execução."
+	@$(PYTHON) -m flask --app run.py run --debug  # Runs the Flask application in debug mode
+	@echo "Application is running."
 
-# Limpar o ambiente virtual
+# Clean up unnecessary files and caches
 .PHONY: clean
 clean:
-	@find . -type d -name "__pycache__" -exec rm -rf {} +
-	@find . -type d -name ".pytest_cache" -exec rm -rf {} +
-	@echo "Cache removido com sucesso."
+	@find . -type d -name "__pycache__" -exec rm -rf {} +  # Removes Python cache directories
+	@find . -type d -name ".pytest_cache" -exec rm -rf {} +  # Removes pytest cache directories
+	@echo "Cache successfully removed."
 
-# faz o test do flake8 no code excluído o venv
+# Run flake8 to check code style, excluding the virtual environment directory
 .PHONY: flake
 flake:
 	@echo 'Checking flake8...'
-	@flake8 --exclude $(VENV)
+	@flake8 --exclude $(VENV)  # Runs flake8 while excluding the virtual environment directory
