@@ -9,21 +9,17 @@
 <hr>
 
 <form method="POST" action="#" autocomplete="on">
-    <div class="form-row">
-        <!-- Olts -->
-        <div class="form-group col">
-            <select name="hostname" id="hostname" class="form-control">
-                {% for device in devices %}
-                <option value="{{device.ip_address}}">{{device.hostname}}</option>
-                {% endfor %}
-            </select>
-        </div>
+    {{ form.hidden_tag() }}
 
-        <!-- Unit/Vlan -->
-        <div class="form-group col">
-            <input type="number" class="form-control" name="unit" id="unit" placeholder="Unit Vlan" required>
-        </div>
+    <!-- ROW OF THE HOSTNAME -->
+    <div class="form-row">
+        <div class="form-group col">{{ form.hostname(class="form-control") }}</div>
+        <div class="form-group col-.3">{{ form.chassis(class="form-control") }}</div>
+        <div class="form-group col-.3">{{ form.slot(class="form-control") }}</div>
+        <div class="form-group col-.3">{{ form.id(class="form-control") }}</div>
+        <div class="form-group col">{{ form.command(class="form-control") }}</div>
     </div>
+
 
     <div class="form-row">
         <!-- Usuários -->
@@ -41,7 +37,9 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Enviar</button>
+    <div class="form-row">
+        <div class="form-group col">{{ form.submit(class="btn btn-primary") }}</div>
+    </div>
 </form>
 
 <br>
