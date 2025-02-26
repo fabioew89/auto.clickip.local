@@ -17,7 +17,7 @@ def ensure_admin():
         admin_password = os.getenv('ADMIN_PASSWORD')
 
         if not admin_username or not admin_password:
-            raise ValueError("ADMIN_USERNAME ou ADMIN_PASSWORD não encontrados no arquivo .env")  # noqa E501
+            raise ValueError("ADMIN_USERNAME ou ADMIN_PASSWORD não encontrados no arquivo .env")
 
         auto_noc = Users.query.filter_by(username=admin_username).first()
 

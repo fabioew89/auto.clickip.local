@@ -4,7 +4,7 @@ from netmiko import ConnectHandler
 Configura uma VLAN no dispositivo Datacom DMOS.
 """
 
-def mpls_seg_one(hostname, username, password, vlan, description, ipv4_neighbor): # noqa E501
+def mpls_seg_one(hostname, username, password, vlan, description, ipv4_neighbor):
     switch = {
         'device_type': 'cisco_ios',
         'host': hostname,
@@ -21,12 +21,12 @@ def mpls_seg_one(hostname, username, password, vlan, description, ipv4_neighbor)
 
         commands = [
             'config exclusive',
-            f'mpls l2vpn vpls-group tunnel-{vlan} vpn {description} description "{description}" administrative-status up', # noqa E501
-            f'mpls l2vpn vpls-group tunnel-{vlan} vpn {description} vfi pw-type vlan {vlan} neighbor {ipv4_neighbor} pw-id {vlan} pw-mtu 1600 pw-load-balance flow-label both', # noqa E501
+            f'mpls l2vpn vpls-group tunnel-{vlan} vpn {description} description "{description}" administrative-status up',
+            f'mpls l2vpn vpls-group tunnel-{vlan} vpn {description} vfi pw-type vlan {vlan} neighbor {ipv4_neighbor} pw-id {vlan} pw-mtu 1600 pw-load-balance flow-label both',
         ]
 
         for command in commands:
-            output = ssh.send_command(command, expect_string=r'#', read_timeout=15) # noqa E501
+            output = ssh.send_command(command, expect_string=r'#', read_timeout=15)
 
             # 'config exclusive',
             # f'mpls l2vpn vpls-group tunnel-{vlan}'           \
@@ -49,7 +49,7 @@ def mpls_seg_one(hostname, username, password, vlan, description, ipv4_neighbor)
             # 'commit confirmed 3; top',
         # ]
 
-        # output = ssh.send_command('show mpls l2vpn vpls brief', expect_string=r'#') # noqa E501
+        # output = ssh.send_command('show mpls l2vpn vpls brief', expect_string=r'#')
 
         # ssh.send_command('config exclusive', expect_string=r'#')
 
@@ -76,12 +76,12 @@ def mpls_seg_one(hostname, username, password, vlan, description, ipv4_neighbor)
         #     vpn {description} ;                             \
         #         bridge-domain                               \
         #             dot1q {vlan} ;                          \
-        #             access-interface ten-gigabit-ethernet-1/1/1', expect_string=r'#' # noqa E501
+        #             access-interface ten-gigabit-ethernet-1/1/1', expect_string=r'#'
         #     )
 
         # ssh.send_command('commit confirmed 3; top', expect_string=r'#')
 
-        # output = ssh.send_command(f'show mpls l2vpn vpls-group brief | include {vlan}', expect_string=r'#') # noqa E501
+        # output = ssh.send_command(f'show mpls l2vpn vpls-group brief | include {vlan}', expect_string=r'#')
 
         # print(output)
 

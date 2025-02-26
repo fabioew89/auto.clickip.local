@@ -27,13 +27,13 @@ def interface_unit():
         db.select(Users).filter_by(username=current_user.username)
     ).scalar_one_or_none()
 
-    user_decrypted_password = fernet_key.decrypt(current_user_record.password).decode('utf-8')  # noqa: E501
+    user_decrypted_password = fernet_key.decrypt(current_user_record.password).decode('utf-8')
 
     output = None
 
-    hosts = db.session.execute(db.select(Routers).order_by(Routers.id)).scalars()  # noqa: E501
+    hosts = db.session.execute(db.select(Routers).order_by(Routers.id)).scalars()
 
-    form.hostname.choices = [(host.ip_address, host.hostname) for host in hosts]  # noqa: E501
+    form.hostname.choices = [(host.ip_address, host.hostname) for host in hosts]
 
     if form.validate_on_submit():
         hostname = form.hostname.data

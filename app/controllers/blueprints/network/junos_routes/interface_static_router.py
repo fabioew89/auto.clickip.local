@@ -24,7 +24,7 @@ def set_static_route_page():
 
     devices = db.session.execute(db.select(Routers)).scalars().all()
 
-    user_decrypted_password = fernet_key.decrypt(current_user.password).decode('utf-8')  # noqa: E501
+    user_decrypted_password = fernet_key.decrypt(current_user.password).decode('utf-8')
 
     output = None
 

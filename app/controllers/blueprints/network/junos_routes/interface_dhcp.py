@@ -15,7 +15,7 @@ int_dhcp_bp = Blueprint('int_dhcp_bp', __name__)
 fernet_key = Fernet(os.getenv('MY_FERNET_KEY'))
 
 
-@int_dhcp_bp.route('/set_access_address_assignment_page', methods=['GET', 'POST'])  # noqa: E501
+@int_dhcp_bp.route('/set_access_address_assignment_page', methods=['GET', 'POST'])
 @login_required
 @fresh_login_required
 def set_access_address_assignment_page():
@@ -23,7 +23,7 @@ def set_access_address_assignment_page():
 
     devices = db.session.execute(db.select(Routers)).scalars().all()
 
-    user_decrypted_password = fernet_key.decrypt(current_user.password).decode('utf-8')  # noqa: E501
+    user_decrypted_password = fernet_key.decrypt(current_user.password).decode('utf-8')
 
     output = None
 

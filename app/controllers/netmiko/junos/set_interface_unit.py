@@ -13,14 +13,14 @@ def set_interface_unit(hostname, username, password, unit, description,
     commands = [
         f'set interfaces ae0 unit {unit} description "{description}"',
         f'set interfaces ae0 unit {unit} vlan-id {unit}',
-        f'set interfaces ae0 unit {unit} family inet filter output PROTECT-CLIENTES',                                   # noqa: E501
-        f'set interfaces ae0 unit {unit} family inet policer input {bandwidth}mb-filter output {bandwidth}mb-filter',   # noqa: E501
+        f'set interfaces ae0 unit {unit} family inet filter output PROTECT-CLIENTES',
+        f'set interfaces ae0 unit {unit} family inet policer input {bandwidth}mb-filter output {bandwidth}mb-filter',
         f'set interfaces ae0 unit {unit} family inet sampling input output',
         f'set interfaces ae0 unit {unit} family inet address {ipv4_gw}/30',
-        f'set interfaces ae0 unit {unit} family inet6 policer input {bandwidth}mb-filter output {bandwidth}mb-filter',  # noqa: E501
+        f'set interfaces ae0 unit {unit} family inet6 policer input {bandwidth}mb-filter output {bandwidth}mb-filter',
         f'set interfaces ae0 unit {unit} family inet6 sampling input output',
         f'set interfaces ae0 unit {unit} family inet6 address {ipv6_gw}/126',
-        f'set routing-options rib inet6.0 static route {inet6_48}/48 next-hop {ipv6_cli}',                              # noqa: E501
+        f'set routing-options rib inet6.0 static route {inet6_48}/48 next-hop {ipv6_cli}',
     ]
 
     try:
@@ -28,8 +28,8 @@ def set_interface_unit(hostname, username, password, unit, description,
         ssh.send_config_set(commands)
         ssh.commit()
         output = [
-            ssh.send_command(f'run show configuration interfaces ae0 unit {unit}'),                                     # noqa: E501
-            ssh.send_command(f'run show configuration | display set | match {ipv6_cli}'),                               # noqa: E501
+            ssh.send_command(f'run show configuration interfaces ae0 unit {unit}'),
+            ssh.send_command(f'run show configuration | display set | match {ipv6_cli}'),
         ]
 
     except Exception as e:

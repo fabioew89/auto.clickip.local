@@ -16,7 +16,7 @@ def check_password(stored_password, provided_password):
     fernet_key = Fernet(os.getenv('MY_FERNET_KEY'))
 
     try:
-        decrypted_password = fernet_key.decrypt(stored_password).decode('utf-8')  # noqa: E501
+        decrypted_password = fernet_key.decrypt(stored_password).decode('utf-8')
         return decrypted_password == provided_password
     except Exception as e:
         print(f'[Erro] Falha ao verificar a senha: {e}')
@@ -35,7 +35,7 @@ def login():
             db.select(Users).filter_by(username=input_username)
         ).scalar_one_or_none()
 
-        if user_record and check_password(user_record.password, input_password):  # noqa: E501
+        if user_record and check_password(user_record.password, input_password):
             login_user(user_record, remember=login_form.checkbox.data)
             flash(f'Sucesso ao logar {input_username}', category='success')
             return redirect(url_for('int_unit_bp.interface_unit'))
@@ -45,7 +45,7 @@ def login():
     if login_form.errors:
         for field_name, error_messages in login_form.errors.items():
             for error_message in error_messages:
-                flash(f'Error in {field_name}: {error_message}', category='danger')  # noqa: E501
+                flash(f'Error in {field_name}: {error_message}', category='danger')
     return render_template('login.html', form=login_form)
 
 

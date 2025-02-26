@@ -31,7 +31,7 @@ def interface_configuration():
         db.select(Users).filter_by(username=current_user.username)
     ).scalar_one_or_none()
 
-    user_decrypted_password = fernet_key.decrypt(current_user_record.password).decode('utf-8')  # noqa: E501
+    user_decrypted_password = fernet_key.decrypt(current_user_record.password).decode('utf-8')
 
     if request.method == 'POST':
         hostname = form.hostname.data
