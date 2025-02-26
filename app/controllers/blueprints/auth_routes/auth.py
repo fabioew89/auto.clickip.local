@@ -45,7 +45,7 @@ def login():
     if login_form.errors:
         for field_name, error_messages in login_form.errors.items():
             for error_message in error_messages:
-                flash(f'Erro no campo {field_name}: {error_message}', category='danger')  # noqa: E501
+                flash(f'Error in {field_name}: {error_message}', category='danger')  # noqa: E501
     return render_template('login.html', form=login_form)
 
 

@@ -42,7 +42,7 @@ def set_access_address_assignment_page():
         if form.errors:
             for field, errors in form.errors.items():
                 for error in errors:
-                    flash(f"Erro no campo {field}: {error}", category='danger')
+                    flash(f"Error in {field}: {error}", category='danger')
 
     return render_template(
         'junos/set_access_address_assignment.html',
