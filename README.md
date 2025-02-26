@@ -1,43 +1,80 @@
-Ola, este e um pequeno projeto que tenho projeto, ainda esta pequeno mas acredito que va crescer muito ainda #laele
+# Projeto Auto ClickIP Local
 
-first, install virtual environmment (venv)
+Bem-vindo ao repositório do **Auto ClickIP Local**! Este projeto tem como objetivo automatizar tarefas de rede utilizando Flask, Flask-Migrate, Netmiko, PyEZ, ipaddress e outras bibliotecas.
 
-Linux
+## 📌 Funcionalidades
+- Integração com dispositivos de rede via **NETCONF** e **RESTCONF**
+- Gerenciamento de VLANs e prefixos de rede
+- Criação automática de usuário administrador
+- Validação de endereços IP e prefixos
+- Flask com Flask-Migrate para gestão de banco de dados
+- Ambiente virtual gerenciado com Makefile
+
+## 🛠️ Tecnologias Utilizadas
+- **Python 3**
+- **Flask** (framework web)
+- **Flask-Migrate** (migração de banco de dados com SQLAlchemy)
+- **Netmiko / PyEZ** (conexão com equipamentos de rede)
+- **ipaddress** (manipulação de endereços IP)
+- **WTForms** (validação de formulários)
+- **Docker Compose** (opcional para conteinerização)
+
+## 🚀 Como Rodar o Projeto
+
+### 1️⃣ Clonar o Repositório
+```bash
+git clone https://github.com/seu-usuario/auto-clickip-local.git
+cd auto-clickip-local
 ```
-python3 -m venv .virt
-source .virt/bin/activate
-pip install flask
+
+### 2️⃣ Criar o Ambiente Virtual
+```bash
+make venv
 ```
 
-# Projeto Flask - Arquitetura MVC
-Este projeto utiliza o framework Flask seguindo a arquitetura MVC (Model-View-Controller) para organizar o código de maneira clara e eficiente.
+### 3️⃣ Instalar as Dependências
+```bash
+make install
+```
 
-# O que é MVC?
-A arquitetura MVC separa a aplicação em três componentes principais:
+### 4️⃣ Configurar as Variáveis de Ambiente
+Crie um arquivo **.env** na raiz do projeto e defina suas credenciais:
+```ini
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=admin123
+DEVICE_TYPE=juniper
+HOSTNAME=192.168.1.1
+USERNAME=meu_usuario
+PASSWORD=minha_senha
+PORT=22
+```
 
-Model (Modelo): Responsável pela lógica de dados, como interação com o banco de dados e validação de regras de negócio. Isso garante que toda a manipulação de dados esteja centralizada e bem organizada.
+### 5️⃣ Rodar a Aplicação
+```bash
+make run
+```
+Acesse **http://127.0.0.1:5000** no navegador.
 
-View (Visão): Refere-se à interface de usuário, ou seja, o que o usuário vê e interage. No Flask, isso é representado pelos arquivos HTML que são renderizados dinamicamente com o motor de templates Jinja2. Todos os arquivos de visão estão na pasta templates.
-
-Controller (Controlador): Atua como intermediário entre a View e o Model. Ele captura as requisições dos usuários (via rotas) e decide qual ação executar, seja acessar o banco de dados ou renderizar uma página HTML. As rotas e controladores estão na pasta controllers.
-
-# Estrutura do Projeto
-A organização dos diretórios segue a divisão do MVC para facilitar a manutenção e escalabilidade:
-
+## 📂 Estrutura do Projeto
 ```
 app/
-├── controllers/    # Lida com as rotas e a lógica de controle
-├── models/         # Contém os modelos e a lógica de dados
-├── static/         # Arquivos estáticos (CSS, JS, imagens, etc.)
-│   ├── css/
-│   ├── img/
-│   ├── js/
-│   └── scss/
-├── templates/      # Arquivos de template HTML (interface do usuário)
+├── __init__.py
+├── models/
+├── controllers/
+├── static/
+├── templates/
+├── config.py
+├── create_admin.py
+└── sandbox.py
 ```
 
-# Por que utilizar MVC?
-Organização: Com a separação das responsabilidades em três camadas (Model, View, Controller), o código fica mais limpo e fácil de manter.
-Escalabilidade: Facilita a adição de novos recursos sem comprometer a estrutura existente.
-Reutilização de Código: Lógica de negócios (Model) e de interface (View) podem ser reutilizadas em diferentes partes do projeto.
-Manutenção: Fica mais fácil de encontrar e corrigir bugs, já que as responsabilidades estão bem definidas.
+## 🐍 Rodando Migrações do Banco de Dados
+Caso faça alterações no modelo de dados, execute:
+```bash
+flask db migrate -m "atualizando tabelas"
+flask db upgrade
+```
+
+## 📝 Licença
+Este projeto está sob a licença MIT. Sinta-se livre para usar e modificar! 🎉
+
