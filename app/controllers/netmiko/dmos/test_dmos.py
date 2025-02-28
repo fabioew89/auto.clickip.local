@@ -31,10 +31,3 @@ def test_dmos(hostname, username, password):
         print(f'[yellow]Desconectado do {hostname}⚠️[/yellow]')
 
     return output
-
-
-test_dmos(
-    hostname='100.127.0.145 ',
-    username='auto.noc',
-    password='3#ed$32wSEd5',
-)
