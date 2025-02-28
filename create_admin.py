@@ -36,6 +36,3 @@ def ensure_admin():
             )
             db.session.add(auto_noc)
             db.session.commit()
-            print("🚀 Admin user created successfully!")
-        else:
-            print("✅ Admin user already exists.")
