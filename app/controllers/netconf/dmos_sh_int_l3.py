@@ -1,13 +1,16 @@
+import os
 from rich import print
 from ncclient import manager
+from dotenv import load_dotenv
 from xml.dom.minidom import parseString
 
+load_dotenv()
 
 router = {
     'host': '100.127.0.254',
     'port': 830,
-    'username': 'netconf',
-    'password': 'tngKadTvL2W4Er',
+    'username': os.getenv('USERNAME'),
+    'password': os.getenv('PASSWORD'),
     'hostkey_verify': False,
 }
 
