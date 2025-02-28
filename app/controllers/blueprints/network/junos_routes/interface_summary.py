@@ -44,7 +44,7 @@ def interface_summary():
             user_password,
         )
 
-        flash('Comando enviado com sucesso!', category='success')
+        flash('Command sent successfully!', category='success')
 
     else:
         if form.errors:

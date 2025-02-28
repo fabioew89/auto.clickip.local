@@ -36,7 +36,7 @@ def set_access_address_assignment_page():
             hostname, username, password,
         )
 
-        flash('Comando enviado com sucesso!', category='success')
+        flash('Command sent successfully!', category='success')
 
     else:
         if form.errors:

@@ -40,7 +40,7 @@ def set_static_route_page():
             network_dest, next_hop,
         )
 
-        flash('Comando enviado com sucesso!', category='success')
+        flash('Command sent successfully!', category='success')
 
     else:
         if form.errors:

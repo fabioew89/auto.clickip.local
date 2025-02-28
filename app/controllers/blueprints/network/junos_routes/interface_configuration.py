@@ -43,7 +43,7 @@ def interface_configuration():
             hostname, username, password, unit
         )
 
-        flash('Comando enviado com sucesso!', category='success')
+        flash('Command sent successfully!', category='success')
 
     else:
         if form.errors:

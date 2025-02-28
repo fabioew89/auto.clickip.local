@@ -38,7 +38,7 @@ def downstream_fec():
             dmos_command=form.dmos_command.data
         )
 
-        flash('Comando enviado com sucesso!', category='success')
+        flash('Command sent successfully!', category='success')
 
     else:
         if form.errors:

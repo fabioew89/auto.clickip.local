@@ -52,7 +52,7 @@ def interface_unit():
             bandwidth, ipv4_gw, ipv6_gw, ipv6_cli, inet6_48
         )
 
-        flash('Comando enviado com sucesso!', category='success')
+        flash('Command sent successfully!', category='success')
 
     else:
         if form.errors:
