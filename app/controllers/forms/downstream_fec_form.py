@@ -15,7 +15,7 @@ class Downstream_fec_form(FlaskForm):
         'Slot', choices=[('1', '1'), ('2', '2')]
     )
 
-    id = SelectField(
+    port_id = SelectField(
         'Id', choices=[
             ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'),
             ('5', '5'), ('6', '6'), ('7', '7'), ('8', '8'),
@@ -24,8 +24,8 @@ class Downstream_fec_form(FlaskForm):
         ]
     )
 
-    command = SelectField(
-        'Command', choices=[
+    dmos_command = SelectField(
+        'dmos_Command', choices=[
             ('no downstream-fec', 'no downstream-fec'),
             ('downstream-fec', 'downstream-fec'),
         ],

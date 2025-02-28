@@ -6,6 +6,7 @@ from cryptography.fernet import Fernet
 from flask import Blueprint, render_template, flash
 from app.controllers.forms import Downstream_fec_form
 from flask_login import current_user, login_required, fresh_login_required
+from app.controllers.netmiko.dmos.no_downstream_fec import no_downstream_fec
 
 load_dotenv()
 
@@ -13,7 +14,6 @@ downstream_fec_bp = Blueprint('downstream_fec_bp', __name__)
 fernet_key = Fernet(os.getenv('MY_FERNET_KEY'))
 
 
-# Rota: set_interface_configuration
 @downstream_fec_bp.route('/downstream_fec', methods=['GET', 'POST'])
 @login_required
 @fresh_login_required
@@ -28,12 +28,14 @@ def downstream_fec():
     current_user_decrypted_password = fernet_key.decrypt(current_user_record.password).decode('utf-8')
 
     if form.validate_on_submit():
-        hostname = form.hostname.data
-        username = current_user.username
-        password = current_user_decrypted_password
-
-        output = downstream_fec(
-            hostname, username, password
+        output = no_downstream_fec(
+            hostname=form.hostname.data,
+            username=current_user.username,
+            password=current_user_decrypted_password,
+            chassis=form.chassis.data,
+            slot=form.slot.data,
+            port_id=form.port_id.data,
+            dmos_command=form.dmos_command.data
         )
 
         flash('Comando enviado com sucesso!', category='success')
