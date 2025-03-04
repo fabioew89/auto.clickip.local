@@ -54,7 +54,7 @@ def set_access_address_assignment(vlan_id, ipv4_gateway, pool_name, network, add
 
     except Exception as e:
         import traceback
-        print(f'[red]Erro ao executar comandos:❌[/red]\n{e}')
+        print(f'[red]Error to execute commands:❌[/red]\n{e}')
         print(traceback.format_exc())
         output = None
 

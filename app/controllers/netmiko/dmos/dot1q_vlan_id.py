@@ -32,7 +32,7 @@ def dot1q_vlan_id(hostname, username, password, vlan, description):
             print(output)
 
     except Exception as e:
-        print(f'Erro ao executar comandos:{e}❌')
+        print(f'Error to execute commands:{e}❌')
         output = None
 
     finally:

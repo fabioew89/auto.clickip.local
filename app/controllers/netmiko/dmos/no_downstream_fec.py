@@ -33,7 +33,7 @@ def no_downstream_fec(hostname, username, password, chassis, slot, port_id, dmos
             ]
 
     except Exception as e:
-        print(f'Erro ao executar comandos: {e}')
+        print(f'Error to execute commands: {e}')
         output = None
 
     finally:

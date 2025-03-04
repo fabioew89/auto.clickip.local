@@ -23,7 +23,7 @@ def test_dmos(hostname, username, password):
         print(output)
 
     except Exception as e:
-        print(f'[red]Erro ao executar comandos: {e}❌[/red]')
+        print(f'[red]Error to execute commands: {e}❌[/red]')
         output = None
 
     finally:

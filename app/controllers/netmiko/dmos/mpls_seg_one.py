@@ -86,7 +86,7 @@ def mpls_seg_one(hostname, username, password, vlan, description, ipv4_neighbor)
         # print(output)
 
     except Exception as e:
-        print(f'Erro ao executar comandos:{e}❌')
+        print(f'Error to execute commands:{e}❌')
         # output = None
 
     finally:
