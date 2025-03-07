@@ -14,20 +14,20 @@ venv:
 # Install dependencies using the virtual environment
 .PHONY: install
 install: venv
-	@$(PIP) install -r requirements.txt > /dev/null  # Installs all dependencies listed in requirements.txt
+	@$(PIP) install -r requirements.txt  # Installs all dependencies listed in requirements.txt
 	@echo "Dependencies installed."
 
 # Run the application using the virtual environment
 .PHONY: run
-run: venv install
-	@$(PYTHON) -m flask --app run.py run --debug  # Runs the Flask application in debug mode
+run:
+	@PYTHONDONTWRITEBYTECODE=1 FLASK_ENV=development $(PYTHON) -m flask --app run.py run --debug  
 	@echo "Application is running."
 
 # Clean up unnecessary files and caches
 .PHONY: clean
 clean:
-	@find . -type d -name "__pycache__" -exec rm -rf {} +  # Removes Python cache directories
-	@find . -type d -name ".pytest_cache" -exec rm -rf {} +  # Removes pytest cache directories
+	@find . -type d \( -name "__pycache__" -o -name ".pytest_cache" \) -exec rm -rf {} + 
+	@find . -type f -name "*.pyc" -delete  
 	@echo "Cache successfully removed."
 
 # Run flake8 to check code style, excluding the virtual environment directory
