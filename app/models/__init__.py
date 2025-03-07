@@ -45,3 +45,13 @@ class Olts(db.Model):
 
     def __repr__(self):
         return self.hostname, self.ip_address
+
+
+class BgpNeighbor(db.Model):
+    __tablename__ = 'bgp_neighbors'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    description = db.Column(db.String, nullable=False)
+    address = db.Column(db.String, nullable=False)
+
+    def __repr__(self):
+        return self.description
