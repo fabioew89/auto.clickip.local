@@ -1,13 +1,19 @@
+import os
 from netmiko import ConnectHandler
 
 
-def set_interface_unit(hostname, username, password, unit, description,
-                       bandwidth, ipv4_gw, ipv6_gw, ipv6_cli, inet6_48):
+def set_interface_unit(
+    hostname, username, password, unit, description,
+    bandwidth, ipv4_gw, ipv6_gw, ipv6_cli, inet6_48
+):
     router = {
         'device_type': 'juniper',
         'host': hostname,
         'username': username,
         'password': password,
+        'port': os.getenv('NETMIKO_PORT'),
+        'timeout': os.getenv('NETMIKO_TIMEOUT'),
+        'session_timeout': os.getenv('NETMIKO_SESSION_TIMEOUT'),
     }
 
     commands = [

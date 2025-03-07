@@ -1,7 +1,5 @@
 import os
 import sys
-import config
-from rich import print
 from netmiko import ConnectHandler
 
 # Corrige o caminho para encontrar config.py
@@ -9,23 +7,25 @@ config_path = os.path.abspath("app/controllers/netmiko/junos")
 sys.path.append(config_path)
 
 
-def set_access_address_assignment(vlan_id, ipv4_gateway, pool_name, network, address_low, address_high):
+def set_access_address_assignment(
+    hostname, username, password,
+    vlan_id, ipv4_gateway, pool_name,
+    network, address_low, address_high
+):
     """Configura o serviço DHCP no roteador Junos via Netmiko."""
 
     router = {
-        'device_type': config.DEVICE_TYPE,
-        'host': config.HOSTNAME,
-        'username': config.USERNAME,
-        'password': config.PASSWORD,
-        'port': config.PORT,
-        'timeout': config.TIMEOUT,
-        'session_timeout': config.SESSION_TIMEOUT,
+        'device_type': 'juniper',
+        'host': hostname,
+        'username': username,
+        'password': password,
+        'port': os.getenv('NETMIKO_PORT'),
+        'timeout': os.getenv('NETMIKO_TIMEOUT'),
+        'session_timeout': os.getenv('NETMIKO_SESSION_TIMEOUT'),
     }
 
     try:
         ssh = ConnectHandler(**router)
-        print(f'[green]Conectado ao {config.HOSTNAME} ✅[/green]')
-        print(ssh.find_prompt() + '\n')
 
         commands = [
             f'set interfaces ae0 unit {vlan_id} vlan-id {vlan_id} description "{pool_name}" family inet address {ipv4_gateway}/21',
@@ -53,24 +53,9 @@ def set_access_address_assignment(vlan_id, ipv4_gateway, pool_name, network, add
             print(line)
 
     except Exception as e:
-        import traceback
-        print(f'[red]Error to execute commands:❌[/red]\n{e}')
-        print(traceback.format_exc())
-        output = None
+        output = e
 
     finally:
         ssh.disconnect()
-        print(f'[yellow]Desconectado do {config.HOSTNAME} ⚠️[/yellow]')
 
     return output
-
-
-# CALL TO ACTION
-set_access_address_assignment(
-    vlan_id=input('Digite o ID da VLAN: '),
-    network=input('Digite o endereço de rede: '),
-    ipv4_gateway=input('Digite o gateway IPv4: '),
-    address_low=input('Digite o endereço IP baixo: '),
-    address_high=input('Digite o endereço IP alto: '),
-    pool_name=input('Digite o nome do pool: '),
-)
