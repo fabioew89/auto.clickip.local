@@ -1,5 +1,4 @@
 from flask_admin import Admin
-from livereload import Server  # noqa: F401
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
@@ -53,11 +52,5 @@ def create_app():
     @app.route('/')
     def page_home():
         return redirect(url_for('int_summary_bp.interface_summary'))  # Redirects to the network interface summary page
-
-    # Livereload configuration for frontend development only
-    # server = Server(app.wsgi_app)
-    # server.watch('app/templates/**/*')  # Watches for changes in templates
-    # server.watch('app/static/**/*')     # Watches for changes in static files
-    # server.serve(port=5001)             # Starts the server on port 5001
 
     return app  # Returns the configured Flask application instance
