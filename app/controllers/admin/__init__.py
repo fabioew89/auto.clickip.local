@@ -133,6 +133,15 @@ class BgpNeighborView(ModelView):
     edit_modal = True
     details_modal = True
 
+    form_extra_fields = {
+        'neighbor': StringField(
+            'Neighbor', validators=[
+                InputRequired(),
+                IPAddress(ipv4=True, ipv6=True)
+            ]
+        ),
+    }
+
 
 def flask_admin():
     admin.name = 'auto.clickip.local'
