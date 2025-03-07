@@ -8,7 +8,7 @@
 {% endblock %}
 
 <hr>
-<form method="POST" action="{{url_for('auth.login')}}" autocomplete="off">
+<form method="POST" action="{{url_for('auth.login')}}" autocomplete="on">
     {{ form.hidden_tag() }}
 
     <div class="form-group">
