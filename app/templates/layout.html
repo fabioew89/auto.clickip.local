@@ -44,6 +44,7 @@
 
       {% if current_user.is_authenticated %}
       <span class="mr-3 text-uppercase font-weight-light">&#8764; {{ current_user.username }} &#8764;</span>
+      <a class="breadcrumb-item" href="/admin">Admin</a>
       <a class="breadcrumb-item" href="{{ url_for('auth.logout') }}">Logout</a>
 
       {% else %}
