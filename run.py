@@ -18,7 +18,7 @@ ensure_admin()
 # Check if the livereloader feature is enabled in the configuration.
 # If LIVERELOADER is set to 1 (True) in config.py or .env, the livereloader will be initialized.
 # This allows automatic reloading of the application when changes are detected.
-if app.config.get("WEB_RELOADER", 0):
+if app.config.get('WEB_RELOADER', False):
     web_reloader()
 
 # The entry point of the application.
