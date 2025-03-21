@@ -20,15 +20,16 @@ install: venv
 # Run the application using the virtual environment
 .PHONY: run
 run:
-	@PYTHONDONTWRITEBYTECODE=1 FLASK_ENV=development $(PYTHON) -m flask --app run.py run --debug  
+	@PYTHONDONTWRITEBYTECODE=1 FLASK_ENV=development FLASK_APP=run.py $(PYTHON) -m flask run --debug --reload
 	@echo "Application is running."
 
 # Clean up unnecessary files and caches
 .PHONY: clean
 clean:
-	@find . -type d \( -name "__pycache__" -o -name ".pytest_cache" \) -exec rm -rf {} + 
-	@find . -type f -name "*.pyc" -delete  
-	@echo "Cache successfully removed."
+	@find . -type d \( -name "__pycache__" -o -name ".pytest_cache" \) -exec rm -rf {} +
+	@find . -type f -name "*.pyc" -delete
+	@rm -rf $(VENV)
+	@echo "Cache and $(VENV) successfully removed."
 
 # Run flake8 to check code style, excluding the virtual environment directory
 .PHONY: flake
