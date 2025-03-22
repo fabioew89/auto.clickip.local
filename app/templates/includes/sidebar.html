@@ -1,0 +1,62 @@
+<style>
+    body {
+        font-family: "Lato", sans-serif;
+    }
+
+    .sidebar {
+        height: 100vh;
+        padding: 3rem;
+        background-color: #111;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1
+    }
+
+    h3,
+    hr,
+    .sidenav a {
+        text-decoration: none;
+        color: lightgray;
+        display: block;
+        font-size: 16pt;
+        margin-bottom: 1rem;
+
+    }
+
+    .sidenav a:hover {
+        text-decoration: underline;
+        color: lightblue;
+    }
+
+    .sidenav a i {
+        margin-right: .5rem;
+    }
+
+</style>
+
+<aside class="sidebar">
+
+    <h3>auto.clickip.local</h3>
+
+    <hr>
+
+    <div class="sidenav">
+        <a href="/"><i class="fa fa-home"></i>Home</a>
+
+        <a href="#collapseExample" data-bs-toggle="collapse" role="button">
+            <i class="fa fa-server"></i>Router
+        </a>
+
+        <div class="collapse" id="collapseExample">
+            <a href="#about"><i class="fa fa-gear"></i>config1</a>
+            <a href="#about"><i class="fa fa-gear"></i>config2</a>
+        </div>
+
+    </div>
+
+</aside>
+
+<script>
+
+</script>
