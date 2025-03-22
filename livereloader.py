@@ -5,7 +5,7 @@ from flask_assets import Environment, Bundle
 app = create_app()
 
 
-def register_assets(app):
+def register_assets():
     assets = Environment(app)
 
     scss = Bundle(
@@ -24,10 +24,10 @@ def register_assets(app):
 def web_reloader():
     app.debug = True
 
-    register_assets(app)
+    register_assets()
 
     server = Server(app.wsgi_app)
-    server.watch('app/templates/**/*.*', delay=0.5)
-    server.watch('app/static/**/*.*', delay=0.5)
+    server.watch('app/templates/**/*.*', delay=1)
+    server.watch('app/static/**/*.*', delay=1)
 
-    server.serve(port=5000)
+    server.serve(port=5000, restart_delay=2)
