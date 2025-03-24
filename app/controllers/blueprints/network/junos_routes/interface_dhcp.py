@@ -45,7 +45,7 @@ def set_access_address_assignment_page():
                     flash(f"Error in {field}: {error}", category='danger')
 
     return render_template(
-        'network/junos/set_access_address_assignment.html',
+        'vendors/junos/set_access_address_assignment.html',
         form=form,
         output=output,
         devices=devices,

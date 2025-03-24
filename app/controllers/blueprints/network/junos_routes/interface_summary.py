@@ -53,7 +53,7 @@ def interface_summary():
                     flash(f"Error in {field}: {error}", category='danger')
 
     return render_template(
-        'network/junos/get_interface_ae0_summary.html',
+        'vendors/junos/get_interface_ae0_summary.html',
         form=form,
         output=output,
         devices=devices,
