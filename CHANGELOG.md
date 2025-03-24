@@ -1,3 +1,10 @@
+## 0.2.0 (2025-03-23)
+
+### Feat
+
+- add pyproject.toml
+- add setup.py
+
 ## 0.1.0 (2025-03-23)
 
 ### Feat
