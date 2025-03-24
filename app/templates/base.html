@@ -5,32 +5,45 @@
   {% include 'includes/head.html' %}
 </head>
 
+<style>
+  .container {
+    margin-left: 16rem;
+    width: calc(100% - 16rem);
+  }
+</style>
+
 <body>
+
   {% include 'includes/sidebar.html' %}
 
-  <div class="container" style="box-shadow: 0 .5rem .5rem  lightgray;">
+  <main class="container">
 
-    {% include "includes/flash_messages.html" %}
+    <div class="rounded mt-3 shadow" style="padding: 3rem; border: 1px solid lightgrey;">
 
-    {% block content %}
+      {% include "includes/flash_messages.html" %}
 
-    data
+      {% block content %}
 
-    {% block comment %}
-    <p class="lead">
-      Aplicação Flask para automatizar configurações de rede, integrando validação
-      de endereços IPv4/IPv6, autenticação de usuários e registro de dispositivos,
-      com suporte a Netmiko para execução de comandos SSH.
-    </p>
-    {% endblock comment %}
+      data
 
-    {% endblock content %}
+      {% block comment %}
+      <p class="lead">
+        Aplicação Flask para automatizar configurações de rede, integrando validação
+        de endereços IPv4/IPv6, autenticação de usuários e registro de dispositivos,
+        com suporte a Netmiko para execução de comandos SSH.
+      </p>
+      {% endblock comment %}
 
-  </div>
+      {% endblock content %}
 
-  {% include 'includes/footer.html' %}
+    </div>
 
-  {% include 'includes/scripts.html' %}
+    {% include 'includes/footer.html' %}
+
+    {% include 'includes/scripts.html' %}
+
+  </main>
+
 </body>
 
 </html>
