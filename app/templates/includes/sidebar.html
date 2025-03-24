@@ -5,6 +5,7 @@
 
     .sidebar {
         height: 100vh;
+        width: 16rem;
         padding: 3rem;
         background-color: #111;
         position: fixed;
@@ -16,12 +17,14 @@
     h3,
     hr,
     .sidenav a {
-        text-decoration: none;
-        color: lightgray;
         display: block;
-        font-size: 16pt;
-        margin-bottom: 1rem;
+        font-size: 14pt;
+        color: lightgray;
+        text-decoration: none;
+    }
 
+    .sidenav i {
+        margin-right: .5rem;
     }
 
     .sidenav a:hover {
@@ -29,10 +32,14 @@
         color: lightblue;
     }
 
-    .sidenav a i {
-        margin-right: .5rem;
+    div #Routers {
+        margin: 1rem;
+
     }
 
+    div #Routers a {
+        font-size: 12pt;
+    }
 </style>
 
 <aside class="sidebar">
@@ -44,19 +51,19 @@
     <div class="sidenav">
         <a href="/"><i class="fa fa-home"></i>Home</a>
 
-        <a href="#collapseExample" data-bs-toggle="collapse" role="button">
+        <a href="#Routers" data-bs-toggle="collapse" role="button">
             <i class="fa fa-server"></i>Router
-        </a>
+        </a><!-- trigger -->
 
-        <div class="collapse" id="collapseExample">
-            <a href="#about"><i class="fa fa-gear"></i>config1</a>
-            <a href="#about"><i class="fa fa-gear"></i>config2</a>
-        </div>
+        <div class="collapse show" id="Routers">
+            <a href="{{ url_for('int_summary_bp.interface_summary') }}">
+                <i class="fa fa-gear"></i>Get Summary
+            </a>
 
-    </div>
+            <a href="{{ url_for('int_conf_bp.interface_configuration') }}">
+                <i class="fa fa-user"></i>Interface Configuration
+            </a>
 
+        </div><!-- collapse -->
+    </div><!-- sidenav -->
 </aside>
-
-<script>
-
-</script>
