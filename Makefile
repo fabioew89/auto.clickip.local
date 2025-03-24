@@ -10,12 +10,12 @@ PIP=$(VENV)/bin/pip
 
 venv:
 	@python3 -m venv $(VENV)
-	@echo "Virtual environment created in $(VENV)"
 	@$(PIP) install --upgrade pip > /dev/null
 	@echo "Pip updated."
+	@echo "Virtual environment created in $(VENV)"
 
 install: venv
-	@$(PIP) install -r requirements.txt
+	@$(PIP) install -r requirements.txt  --no-cache-dir
 	@echo "Dependencies installed."
 
 run:
