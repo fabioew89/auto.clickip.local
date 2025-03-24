@@ -1,3 +1,9 @@
+## v0.6.2 (2025-03-24)
+
+### Fix
+
+- remove delay in livereloader
+
 ## v0.6.1 (2025-03-24)
 
 ### Fix
