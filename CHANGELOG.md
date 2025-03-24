@@ -1,4 +1,12 @@
-## Unreleased
+## v0.6.0 (2025-03-24)
+
+### Feat
+
+- add dropdown in end of sidebar
+
+### Fix
+
+- add more time to livereloader
 
 ## v0.5.1 (2025-03-24)
 
