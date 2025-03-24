@@ -3,22 +3,29 @@
 
 <head>
   {% include 'includes/head.html' %}
-</head>
 
-<style>
-  .container {
-    margin-left: 16rem;
-    width: calc(100% - 16rem);
-  }
-</style>
+  <style>
+    .main {
+      margin-left: 20rem;
+      width: calc(100% - 20rem);
+    }
+
+    .container {
+      padding: 3rem;
+      margin-top: 1rem;
+      border: 1px solid lightgrey;
+    }
+  </style>
+
+</head>
 
 <body>
 
   {% include 'includes/sidebar.html' %}
 
-  <main class="container">
+  <main class="main">
 
-    <div class="rounded mt-3 shadow" style="padding: 3rem; border: 1px solid lightgrey;">
+    <div class="container rounded-3 shadow">
 
       {% include "includes/flash_messages.html" %}
 
