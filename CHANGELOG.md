@@ -286,6 +286,12 @@
 - get_interface_summary page
 - refactor .gitignore
 
+## v0.5.1 (2025-03-24)
+
+### Fix
+
+- **changed-icon-of-the-i-tag**: sidebar.html
+
 ## v0.5.0 (2025-03-24)
 
 ## v0.3.0 (2025-03-24)
