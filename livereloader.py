@@ -27,7 +27,7 @@ def web_reloader():
     register_assets()
 
     server = Server(app.wsgi_app)
-    server.watch('app/templates/**/*.*', delay=.5)
-    server.watch('app/static/**/*.*', delay=.5)
+    server.watch('app/templates/**/*.*')
+    server.watch('app/static/**/*.*')
 
     server.serve(port=5000, restart_delay=2)
