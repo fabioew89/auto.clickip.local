@@ -47,7 +47,7 @@ def downstream_fec():
                     flash(f"Error in {field}: {error}", category='danger')
 
     return render_template(
-        'network/dmos/downstream_fec.html',
+        'vendors/dmos/downstream_fec.html',
         form=form,
         output=output,
     )

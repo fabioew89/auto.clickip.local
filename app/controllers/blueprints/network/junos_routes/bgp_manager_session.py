@@ -49,7 +49,7 @@ def bgp_manager_session():
                     flash(f"Error in {field}: {error}", category='danger')
 
     return render_template(
-        'network/junos/bgp_manager_session.html',
+        'vendors/junos/bgp_manager_session.html',
         form=form,
         output=output,
     )
