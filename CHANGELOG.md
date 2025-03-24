@@ -1,4 +1,8 @@
-## Unreleased
+## v0.6.1 (2025-03-24)
+
+### Fix
+
+- upt changelog.md
 
 ## v0.6.0 (2025-03-24)
 
