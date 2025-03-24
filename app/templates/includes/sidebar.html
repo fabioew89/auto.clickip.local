@@ -5,8 +5,8 @@
 
     .sidebar {
         height: 100vh;
-        width: 16rem;
-        padding: 3rem;
+        width: 20rem;
+        padding: 2rem;
         background-color: #111;
         position: fixed;
         top: 0;
@@ -53,15 +53,32 @@
 
         <a href="#Routers" data-bs-toggle="collapse" role="button">
             <i class="fa fa-server"></i>Router
-        </a><!-- trigger -->
+        </a><!-- toggle -->
 
-        <div class="collapse show" id="Routers">
+        <div class="collapse" id="Routers"><!-- collapse -->
             <a href="{{ url_for('int_summary_bp.interface_summary') }}">
                 <i class="fa fa-gear"></i>Get Summary
             </a>
-
             <a href="{{ url_for('int_conf_bp.interface_configuration') }}">
                 <i class="fa fa-gear"></i>Interface Configuration
+            </a>
+            <a href="{{ url_for('int_summary_bp.interface_summary') }}">
+                <i class="fa fa-gear"></i>Interface Summary
+            </a>
+            <a href="{{ url_for('int_conf_bp.interface_configuration') }}">
+                <i class="fa fa-gear"></i>Interface Configuration
+            </a>
+            <a href="{{ url_for('int_unit_bp.interface_unit') }}">
+                <i class="fa fa-gear"></i>Config Interface Unit Vlan
+            </a>
+            <a href="{{ url_for('int_static_route_bp.set_static_route_page') }}">
+                <i class="fa fa-gear"></i>Config Static Router
+            </a>
+            <a href="{{ url_for('int_dhcp_bp.set_access_address_assignment_page') }}">
+                <i class="fa fa-gear"></i>Access Address Assignment
+            </a>
+            <a href="{{ url_for('bgp_manager_session_bp.bgp_manager_session') }}">
+                <i class="fa fa-gear"></i>BGP Manager Session
             </a>
 
         </div><!-- collapse -->
