@@ -5,7 +5,7 @@ from wtforms import SelectField, SubmitField
 class SummaryForm(FlaskForm):
     hostname = SelectField(
         label='Hostname', 
-        description='We\'ll never share your email with anyone else.',
+        description='show interfaces terse lo0 | match lo',
         choices=[],
         
     )
