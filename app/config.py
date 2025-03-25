@@ -5,10 +5,6 @@ from dotenv import load_dotenv
 # Used for sensitive or environment-specific configurations (e.g., API keys, database URIs).
 load_dotenv()
 
-# Flask environment mode (development, production, testing).
-# 'development' enables debug mode, auto-reload, and detailed error pages.
-FLASK_ENV = 'development'
-
 # Default port for the Flask development server.
 # Can be overridden by environment variables or deployment settings (e.g., Heroku uses PORT env var).
 PORT = 5000
@@ -31,3 +27,13 @@ SECRET_KEY = os.getenv('SQLALCHEMY_SECRET_KEY')
 # True: Auto-refreshes browser on file changes (HTML/CSS/JS).
 # False: Disabled (default for production).
 WEB_RELOADER = False
+
+## Netmiko Connection Parameters
+# SSH port for connecting to the device (default is 22)
+NETMIKO_PORT = 22
+
+# General timeout for the connection attempt (in seconds)
+NETMIKO_TIMEOUT = 30
+
+# Maximum session timeout before disconnecting the SSH session (in seconds)
+NETMIKO_SESSION_TIMEOUT = 60
