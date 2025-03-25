@@ -3,7 +3,7 @@ from app import db
 from dotenv import load_dotenv
 from app.models import Users, Routers
 from cryptography.fernet import Fernet
-from app.controllers.forms import NetworkForm
+from app.controllers.forms import form_get_interface_ae0_summary
 from app.controllers.netmiko import get_interface_ae0_summary
 from flask import Blueprint, request, render_template, flash
 from flask_login import current_user, login_required, fresh_login_required
@@ -21,7 +21,7 @@ fernet_key = Fernet(os.getenv('MY_FERNET_KEY'))
 @login_required
 @fresh_login_required
 def interface_summary():
-    form = NetworkForm()
+    form = form_get_interface_ae0_summary()
 
     devices = db.session.execute(db.select(Routers)).scalars().all()
 
