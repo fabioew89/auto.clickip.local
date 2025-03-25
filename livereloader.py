@@ -29,7 +29,7 @@ def web_reloader():
     server.watch('app/static/**/*.*', delay=0.5)
     server.watch('app/static/scss/**/*.scss', lambda: app.extensions['assets']['scss_all'].build())
 
-    port = app.config.get('PORT', 5000)
+    port = app.config.get('APLICATION_PORT', 5000)
     server.serve(port=port, restart_delay=1)
 
 if __name__ == '__main__':

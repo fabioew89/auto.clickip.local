@@ -7,7 +7,7 @@ load_dotenv()
 
 # Default port for the Flask development server.
 # Can be overridden by environment variables or deployment settings (e.g., Heroku uses PORT env var).
-PORT = 5000
+APLICATION_PORT = 5000
 
 # SQLite database filename.
 # Stores application data in a local file (default: 'nexus.db').
