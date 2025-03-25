@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from app.models import Routers
 from cryptography.fernet import Fernet
 from app.controllers.forms import StaticRouteForm
-from app.controllers.netmiko import set_static_route
+from app.controllers.network.netmiko import set_static_route
 from flask import Blueprint, request, render_template, flash
 from flask_login import current_user, login_required, fresh_login_required
 

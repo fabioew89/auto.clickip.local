@@ -6,7 +6,7 @@ from cryptography.fernet import Fernet
 from flask import Blueprint, render_template, flash
 from app.controllers.forms import Downstream_fec_form
 from flask_login import current_user, login_required, fresh_login_required
-from app.controllers.netmiko.dmos.no_downstream_fec import no_downstream_fec
+from app.controllers.network.netmiko.dmos.no_downstream_fec import no_downstream_fec
 
 load_dotenv()
 
