@@ -1,3 +1,12 @@
+## v0.7.1 (2025-03-25)
+
+### Fix
+
+- upt app/templates/includes/sidebar.html with username in dropdown
+- upt livereloader.py
+- upt app/config.py
+- upt app/templates/base.html
+
 ## v0.7.0 (2025-03-25)
 
 ### Feat
