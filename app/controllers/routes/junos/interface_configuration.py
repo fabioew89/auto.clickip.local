@@ -5,7 +5,7 @@ from app.models import Users, Routers
 from cryptography.fernet import Fernet
 from app.controllers.forms import NetworkForm
 from flask import Blueprint, request, render_template, flash
-from app.controllers.network.netmiko import get_interface_ae0_config
+from app.controllers.netmiko import get_interface_ae0_config
 from flask_login import current_user, login_required, fresh_login_required
 
 load_dotenv()

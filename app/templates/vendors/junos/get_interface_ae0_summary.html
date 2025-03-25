@@ -1,27 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{% block title %}Get Summary{% endblock %}</h1>
+<h1>Get Summary</h1>
 
 <hr>
 
 <form method="POST" action="{{ url_for('int_summary_bp.interface_summary') }}" autocomplete="on">
     {{ form.hidden_tag() }}
 
-    <select class="form-select">
-        <option selected>Open this select menu</option>
-        <option value="1">One</option>
-    </select>
-    <div class="form-text mb-3">We'll never share your email with anyone else.</div>
+    {{ form.hostname(class="form-select") }}
+    <small class="form-text text-muted d-block mb-3">
+        {{ form.hostname.description }}
+    </small>
+    {{ form.submit(class="btn btn-primary") }}
 
-    <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
 
 <br>
 
 <pre class="text-center">show interfaces terse lo0 | match lo</pre>
-<pre class="max-height" style=" border: solid 1px rgba(0, 0, 0, .1); 
-                                    padding: 1rem; 
-                                    margin-top: 1rem; 
-                                    border-radius: 10px;">{{ output }}</pre>
+<pre class="border border-3 rounded-3 p-3">{{ output }}</pre>
 {% endblock %}

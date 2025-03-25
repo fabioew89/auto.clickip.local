@@ -1,12 +1,12 @@
 import os
 from app import db
 from dotenv import load_dotenv
-from app.models import Users, Routers
+from app.models import Routers
 from cryptography.fernet import Fernet
-from flask import Blueprint, request, render_template, flash
-from app.controllers.network.netmiko import get_interface_ae0_summary
-from app.controllers.forms.form_get_interface_ae0_summary import SummaryForm
+from flask import Blueprint, render_template, flash
+from app.controllers.netmiko import get_interface_ae0_summary
 from flask_login import current_user, login_required, fresh_login_required
+from app.controllers.forms.get_interface_ae0_summary import SummaryForm
 
 load_dotenv()
 
@@ -29,14 +29,10 @@ def interface_summary():
     output = None
 
     if form.validate_on_submit():
-        selected_hostname = form.hostname.data
-        logged_username = current_user.username
-        user_password = current_user_decrypted_password
-
         output = get_interface_ae0_summary(
-            selected_hostname,
-            logged_username,
-            user_password,
+            hostname=form.hostname.data,
+            username=current_user.username,
+            password=current_user_decrypted_password,
         )
 
         flash('Command sent successfully!', category='success')
