@@ -1,3 +1,14 @@
+## v0.8.0 (2025-03-25)
+
+### Feat
+
+- renamed app/controllers/blueprints to routes
+
+### Fix
+
+- rename /interface_summary.py to /get_interface_ae0_summary.py
+- remove comments in app/controllers/netmiko/junos/get_interface_ae0_summary.py
+
 ## v0.7.1 (2025-03-25)
 
 ### Fix
