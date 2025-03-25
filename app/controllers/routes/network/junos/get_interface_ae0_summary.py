@@ -3,9 +3,9 @@ from app import db
 from dotenv import load_dotenv
 from app.models import Users, Routers
 from cryptography.fernet import Fernet
-from app.controllers.forms import form_get_interface_ae0_summary
-from app.controllers.netmiko import get_interface_ae0_summary
 from flask import Blueprint, request, render_template, flash
+from app.controllers.netmiko import get_interface_ae0_summary
+from app.controllers.forms.form_get_interface_ae0_summary import SummaryForm
 from flask_login import current_user, login_required, fresh_login_required
 
 load_dotenv()
@@ -21,22 +21,17 @@ fernet_key = Fernet(os.getenv('MY_FERNET_KEY'))
 @login_required
 @fresh_login_required
 def interface_summary():
-    form = form_get_interface_ae0_summary()
-
-    devices = db.session.execute(db.select(Routers)).scalars().all()
-
-    current_user_record = db.session.execute(
-        db.select(Users).filter_by(username=current_user.username)
-    ).scalar_one_or_none()
-
-    user_decrypted_password = fernet_key.decrypt(current_user_record.password).decode('utf-8')
+    form = SummaryForm()
+    hosts = db.session.execute(db.select(Routers).order_by(Routers.id)).scalars().all()
+    form.hostname.choices = [(host.ip_address, host.hostname) for host in hosts]
+    current_user_decrypted_password = fernet_key.decrypt(current_user.password).decode('utf-8')
 
     output = None
 
-    if request.method == 'POST':
+    if form.validate_on_submit():
         selected_hostname = form.hostname.data
         logged_username = current_user.username
-        user_password = user_decrypted_password
+        user_password = current_user_decrypted_password
 
         output = get_interface_ae0_summary(
             selected_hostname,
@@ -56,5 +51,5 @@ def interface_summary():
         'vendors/junos/get_interface_ae0_summary.html',
         form=form,
         output=output,
-        devices=devices,
+        devices=form.hostname.choices,
     )
