@@ -1,5 +1,8 @@
 import os
+from dotenv import load_dotenv
 from netmiko import ConnectHandler
+
+load_dotenv()
 
 
 # Retrieves the interface summary from a Juniper device
