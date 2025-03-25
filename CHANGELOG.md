@@ -1,3 +1,29 @@
+## v0.7.0 (2025-03-24)
+
+### Feat
+
+- add dropdown in end of sidebar
+- added commitizen like as requirements
+- add pyproject.toml
+- add setup.py
+- add sidebar in site
+
+### Fix
+
+- web_reloader is default false
+- remove delay in livereloader
+- upt changelog.md
+- add more time to livereloader
+- **changed-icon-of-the-i-tag**: sidebar.html
+- renamed templates/network to templates/vendors
+- add container class in main
+- add new sidebar in site
+- upt livereloader
+- migrated WEB_RELOADER to config.py
+- upt make run and clean functions
+- upt livereloader with delay=0.5 in server.watch
+- upt .gitignore with .vscode/*
+
 ## v0.6.2 (2025-03-24)
 
 ### Fix
