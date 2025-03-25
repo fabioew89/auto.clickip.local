@@ -5,7 +5,6 @@ from .downstream_fec_form import Downstream_fec_form
 from .bgp_manager_session_form import BgpManagerSessionForm
 from .set_access_address_assignment import AddressAssignmentForm
 
-
 __all__ = [
     'LoginForm',
     'NetworkForm',

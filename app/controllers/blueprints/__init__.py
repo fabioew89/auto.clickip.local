@@ -3,7 +3,7 @@ from .auth import auth_bp
 from .network.junos_routes.interface_unit import int_unit_bp
 from .network.junos_routes.interface_dhcp import int_dhcp_bp
 from .network.dmos_routes.downstream_fec import downstream_fec_bp
-from .network.junos_routes.interface_summary import int_summary_bp
+from .network.junos_routes.get_interface_ae0_summary import int_summary_bp
 from .network.junos_routes.interface_configuration import int_conf_bp
 from .network.junos_routes.bgp_manager_session import bgp_manager_session_bp
 from .network.junos_routes.interface_static_router import int_static_route_bp
