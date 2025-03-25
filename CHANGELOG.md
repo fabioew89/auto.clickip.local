@@ -1,3 +1,14 @@
+## v0.10.0 (2025-03-25)
+
+### Fix
+
+- hulk smash
+- upt .env.example
+- upt app/config.py
+- add new folder in routes
+- caquinha :poop
+- upt sidebar.html
+
 ## v0.9.0 (2025-03-25)
 
 ### Feat
