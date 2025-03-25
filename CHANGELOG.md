@@ -1,3 +1,13 @@
+## v0.9.0 (2025-03-25)
+
+### Feat
+
+- renamed app/controllers/blueprints to routes
+
+### Fix
+
+- rename /interface_summary.py to /get_interface_ae0_summary.py
+
 ## v0.8.0 (2025-03-25)
 
 ### Feat
