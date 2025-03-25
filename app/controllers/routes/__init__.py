@@ -1,12 +1,12 @@
 from flask import Flask
 from .auth import auth_bp
-from .network.junos.interface_unit import int_unit_bp
-from .network.junos.interface_dhcp import int_dhcp_bp
-from .network.dmos.downstream_fec import downstream_fec_bp
-from .network.junos.get_interface_ae0_summary import int_summary_bp
-from .network.junos.interface_configuration import int_conf_bp
-from .network.junos.bgp_manager_session import bgp_manager_session_bp
-from .network.junos.interface_static_router import int_static_route_bp
+from .junos.interface_unit import int_unit_bp
+from .junos.interface_dhcp import int_dhcp_bp
+from .dmos.downstream_fec import downstream_fec_bp
+from .junos.get_interface_ae0_summary import int_summary_bp
+from .junos.interface_configuration import int_conf_bp
+from .junos.bgp_manager_session import bgp_manager_session_bp
+from .junos.interface_static_router import int_static_route_bp
 
 
 def register_blueprints(app: Flask):

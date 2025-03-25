@@ -42,8 +42,6 @@ Crie um arquivo **.env** na raiz do projeto e defina suas credenciais:
 ```ini
 ADMIN_USERNAME=admin
 ADMIN_PASSWORD=admin123
-DEVICE_TYPE=juniper
-PORT=22
 ```
 
 ### 5️⃣ Rodar a Aplicação
