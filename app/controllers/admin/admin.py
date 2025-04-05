@@ -129,6 +129,11 @@ class LogoutLink(MenuLink):
         return url_for('auth_bp.logout')
 
 
+class AppLink(MenuLink):
+    def get_url(self):
+        return url_for('int_summary_bp.interface_summary')
+
+
 class UploadsFileAdmin(FileAdmin):
     def is_accessible(self):
         return current_user.is_authenticated
@@ -162,4 +167,5 @@ def flask_admin():
 
     admin.add_view(UploadsFileAdmin(base_path=admin.base_path, name='Uploads'))
 
+    admin.add_link(AppLink(name='App', category=''))
     admin.add_link(LogoutLink(name='Logout', category=''))
