@@ -1,3 +1,9 @@
+## v0.16.0 (2025-04-05)
+
+### Feat
+
+- **app/controllers/admin/admin.py**: add new link in flask-admin
+
 ## v0.15.0 (2025-04-04)
 
 ### Feat
