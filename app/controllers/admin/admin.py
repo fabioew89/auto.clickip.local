@@ -61,9 +61,7 @@ class DeviceView(ModelView):
 
     edit_modal = details_modal = True
     can_view_details = can_set_page_size = True
-    can_edit = can_create = can_export = True
-
-    can_delete = False
+    can_edit = can_create = can_export = can_delete = True
 
     column_default_sort = 'hostname'
     column_searchable_list = column_filters = column_editable_list = ['hostname', 'ip_address']
