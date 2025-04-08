@@ -11,21 +11,14 @@
         height: 100vh;
 
     }
-
-    .dev-border {
-        border-radius: .5rem;
-    }
-
-    .dev-border-red {
-        border: 1px solid red;
-    }
 </style>
 
 <body>
+    {% include 'includes/flash_messages.html' %}
 
     <div class="dev d-flex justify-content-center align-items-center bg-light">
 
-        <div class="dev-border border border-primary shadow p-5 bg-white">
+        <div class="bg-white shadow p-5 border border-primary rounded-3">
 
             <h1 class="h3 text-center mb-4">Sign in</h1>
             <form action="{{ url_for('auth_bp.login') }}" method="post" autocomplete="on">
@@ -58,8 +51,9 @@
 
             </form>
 
-            <p class="text-center">Not registered?<a href="{{ url_for('auth_bp.register') }}">Create account</a></p>
-
+            <p class="text-center">Not registered?&nbsp;
+                <a href="{{ url_for('auth_bp.register') }}">Create account</a>
+            </p>
         </div>
     </div>
 
