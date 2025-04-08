@@ -1,3 +1,70 @@
+## v0.17.0 (2025-04-08)
+
+### Feat
+
+- **app/controllers/admin/admin.py**: add new link in flask-admin
+- **app/__init__.py**: upt with bootstrap4 in flask-admin
+- **app/controllers/admin/admin.py**: refact admin.py
+- **Makefile**: new functions in Makefile, add flask-migrate
+- **app/controllers/admin/admin.py**: add new feature, fileadmin like uploads in admin painel
+- **app/templates/includes/sidebar.html**: add a button to close and open sidebar
+- **netmiko/junos/bgp_manager.py**: done, finally finished function to deactivate and activate neighbor in bgp protocol
+- **/app/config.py**: env_path to ensure load env
+- renamed app/controllers/blueprints to routes
+
+### Fix
+
+- **app/controllers/routes/junos/bgp_manager.py-and-get_interface_ae0_summary.py**: changed order_by to hostname and description
+- **app/controllers/admin/admin.py**: changed permission can_delete to True
+- **app/templates/includes/flash_messages.html**: added script action to fade flash and fixed-top class
+- **app/templates/includes/flash_messages.html**: add {% include 'includes/flash_messages.html' %}
+- **Makefile**: remvoe host='0.0.0.0' in Makefile
+- **create_admin.py**: upt add new field in create_admin, is_admin=True
+- add just a .gitkeep
+- **app/controllers/admin/admin.py**: add logout button in top header flask_admin
+- **app/templates/admin/index.html**: refactored /admin/index.html
+- **app/controllers/admin/admin.py**: add new menu link, logout
+- **app/models/__init__.py**: add is_admin = db.Column(db.Boolean, default=False)
+- **app/templates/admin/index.html**: del <li><a href="/admin/users/">Users</a></li>
+- **app/controllers/routes/auth/__init__.py**: redirect return to interface_summary
+- **app/templates/vendors/dmos/downstream_fec.html**: add endpoint in action form
+- **app/templates/includes/sidebar.html**: hidden menu items
+- adjusted get config to bs5
+- **app/controllers/forms/get_interface_ae0_summary.py**: delete enpty spaces
+- **livereloader.py**: upt livereloader.py
+- **base.html**: remove class container of the tag main
+- **bgp_manager.html**: script upt to refresh data with ajax
+- **bgp_manager.py**: finally configured to work with bgp manager
+- **footer.html**: not implemented yet
+- **main.js**: its not necessary
+- **setup.py**: upt version to 0.1.0
+- change bgp_manager_session name to bgp_manager
+- del bgp_manager.py of the __init__.py
+- upt form bgp_manager
+- upt bgp_manager.html
+- changed name bgp_manager_session.xyz to bgp_manager.xyz
+- upt flash_messages.html
+- del templates/vendors/junos/get_interface_ae0_summary.html tag </pre>
+- upt description forms/get_interface_ae0_summary.py
+- hulk smash
+- upt .env.example
+- upt app/config.py
+- add new folder in routes
+- caquinha :poop
+- upt sidebar.html
+- rename /interface_summary.py to /get_interface_ae0_summary.py
+- remove comments in app/controllers/netmiko/junos/get_interface_ae0_summary.py
+- upt app/templates/includes/sidebar.html with username in dropdown
+- upt livereloader.py
+- upt app/config.py
+- upt app/templates/base.html
+- upt livereloader
+- web_reloader is default false
+
+### Refactor
+
+- ****/*/downstream_fec.***: refact downstream_fec
+
 ## v0.16.0 (2025-04-05)
 
 ### Feat
