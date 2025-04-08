@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Set Interface ae0 Unit Vlan</h1>
+
+<hr />
+
+<form action="{{url_for('int_unit_bp.interface_unit')}}" method="POST" autocomplete="on">
+  {{ form.hidden_tag() }}
+  <div class="row mb-3">
+    <div class="col">
+      <div class="form-floating">
+        {{ form.hostname(class="form-control") }}
+        {{ form.hostname.label }}
+      </div>
+    </div>
+  </div>
+  <!-- hostname -->
+
+  <div class="row g-3 mb-3">
+    <div class="col-3">
+      <div class="form-floating">
+        {{ form.unit_vlan(class="form-control") }}
+        {{ form.unit_vlan.label }}
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-floating">
+        {{ form.description(class="form-control") }}
+        {{ form.description.label }}
+      </div>
+    </div>
+  </div>
+  <!-- vlan and description -->
+
+  <div class="row g-3 mb-3">
+    <div class="col-5">
+      <div class="form-floating">
+        {{ form.ipv4_gw(class="form-control") }}
+        {{ form.ipv4_gw.label }}
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-floating">
+        {{ form.bandwidth(class="form-control") }}
+        {{ form.bandwidth.label }}
+      </div>
+    </div>
+  </div>
+  <!-- ipv4 and bandwidth -->
+
+  <div class="row g-3 mb-3">
+    <div class="col">
+      <div class="form-floating">
+        {{ form.ipv6_gw(class="form-control") }}
+        {{ form.ipv6_gw.label }}
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-floating">
+        {{ form.ipv6_cli(class="form-control") }}
+        {{ form.ipv6_cli.label }}
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-floating">
+        {{ form.ipv6_48(class="form-control") }}
+        {{ form.ipv6_48.label }}
+      </div>
+    </div>
+  </div>
+  <!-- ipv6 gateway, cliet and /48 -->
+
+  {{ form.submit(class="btn btn-primary") }}
+</form>
+
+<br>
+
+<small class="text-muted">f'set interfaces ae0 unit {unit}'</small>
+<pre class="border border-3 rounded-3 p-3">{{ output }}</pre>
+
+{% endblock %}
