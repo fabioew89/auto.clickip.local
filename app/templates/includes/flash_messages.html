@@ -1,8 +1,23 @@
 {% with messages = get_flashed_messages(with_categories=True) %}
 {% for category, message in messages %}
-<div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+<div id="flash-messages" class="alert alert-{{ category }} alert-dismissible fade show fixed-top" role="alert">
     <p class="m-auto">{{ message }}</p>
     <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
 </div>
 {% endfor %}
 {% endwith %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+            var flashMessages = document.getElementById("flash-messages");
+            if (flashMessages) {
+                flashMessages.style.transition = "opacity 0.5s ease-out";
+                flashMessages.style.opacity = "0";
+                setTimeout(function () {
+                    flashMessages.remove();
+                }, 500);
+            }
+        }, 3000);
+    });
+</script>
