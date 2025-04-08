@@ -25,7 +25,8 @@ install: venv
 	@$(PIP) install -r requirements.txt  --no-cache-dir > /dev/null
 
 run:
-	@export PYTHONDONTWRITEBYTECODE=1 FLASK_APP=run.py && $(PYTHON) -m flask run --debug --host=0.0.0.0
+	@export PYTHONDONTWRITEBYTECODE=1 FLASK_APP=run.py && \
+	$(PYTHON) -m flask run --debug
 
 clean:
 	@find . -type d \( -name "__pycache__" -o -name ".pytest_cache" \) -exec rm -rf {} +
