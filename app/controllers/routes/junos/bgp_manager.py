@@ -21,16 +21,16 @@ fernet_key = Fernet(os.getenv('MY_FERNET_KEY'))
 @fresh_login_required
 def bgp_manager():
     form = BgpManagerForm()
-    hosts = db.session.execute(db.select(Routers).order_by(Routers.id)).scalars().all()
+    hosts = db.session.execute(db.select(Routers).order_by(Routers.hostname)).scalars().all()
     form.hostname.choices = [(host.ip_address, host.hostname) for host in hosts]
     current_user_decrypted_password = fernet_key.decrypt(current_user.password).decode('utf-8')
 
     # Atualiza as choices do neighbor baseado no grupo recebido
     if form.group.data:
         if form.group.data == 'Sessoes_Transito_IPv4':
-            neighbors = db.session.execute(db.select(NeighborBgpIpv4).order_by(NeighborBgpIpv4.id)).scalars().all()
+            neighbors = db.session.execute(db.select(NeighborBgpIpv4).order_by(NeighborBgpIpv4.description)).scalars().all()
         else:
-            neighbors = db.session.execute(db.select(NeighborBgpIpv6).order_by(NeighborBgpIpv6.id)).scalars().all()
+            neighbors = db.session.execute(db.select(NeighborBgpIpv6).order_by(NeighborBgpIpv6.description)).scalars().all()
 
     # Atualiza as opções do campo neighbor
     form.neighbor.choices = [(n.neighbor, n.description) for n in neighbors]
