@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <h1>Set Interface ae0 Unit Vlan</h1>
 
 <hr />
 
-<form action="{{url_for('int_unit_bp.interface_unit')}}" method="POST" autocomplete="on">
+<form action="{{url_for('set_interface_ae0_unit_vlan_bp.interface_unit')}}" method="POST" onsubmit="return mySubmitFunction()" autocomplete="on">
+
   {{ form.hidden_tag() }}
+
   <div class="row mb-3">
     <div class="col">
       <div class="form-floating">
@@ -58,25 +61,53 @@
     </div>
     <div class="col">
       <div class="form-floating">
-        {{ form.ipv6_cli(class="form-control") }}
-        {{ form.ipv6_cli.label }}
-      </div>
-    </div>
-    <div class="col">
-      <div class="form-floating">
         {{ form.ipv6_48(class="form-control") }}
         {{ form.ipv6_48.label }}
       </div>
     </div>
   </div>
-  <!-- ipv6 gateway, cliet and /48 -->
+  <!-- ipv6 gateway and /48 -->
 
-  {{ form.submit(class="btn btn-primary") }}
+  <div class="d-flex justify-content-between">
+    {{ form.submit(class="btn btn-primary") }}
+    <!-- <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Preview</button> -->
+    <button type="reset" class="btn btn-danger">Reset</button>
+  </div>
+  <!-- buttons -->
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">{{ current_user.username }}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {{ output }}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- modal -->
+
 </form>
 
 <br>
 
 <small class="text-muted">f'set interfaces ae0 unit {unit}'</small>
 <pre class="border border-3 rounded-3 p-3">{{ output }}</pre>
+
+<script>
+  function mySubmitFunction() {
+    if (!confirm("Deseja realizar as configurações?")) {
+      return false
+    }
+    return true
+  }
+</script>
 
 {% endblock %}
