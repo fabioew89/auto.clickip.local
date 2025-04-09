@@ -1,3 +1,17 @@
+## v0.17.1 (2025-04-09)
+
+### Fix
+
+- **app/templates/includes/sidebar.html**: fix url_for to set_interface_ae0_unit_vlan_bp
+- refactored imported to set_interface_ae0_unit_vlan
+- **app/templates/includes/sidebar.html**: unhidden set_interface_ae0_unit_vlan.py
+- **app/templates/includes/flash_messages.html**: refact flash_messages
+
+### Refactor
+
+- **set_interface_ae0_unit_vlan**: migrated to bs5 and refactored set_interface_ae0_unit_vlan
+- **app/templates/vendors/junos/set_interface_ae0_unit_vlan.html**: refact set_interface_ae0_unit_vlan to bs5
+
 ## v0.17.0 (2025-04-08)
 
 ### Feat
