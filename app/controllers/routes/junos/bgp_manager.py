@@ -21,9 +21,9 @@ fernet_key = Fernet(os.getenv('MY_FERNET_KEY'))
 @fresh_login_required
 def bgp_manager():
     form = BgpManagerForm()
+    current_user_decrypted_password = fernet_key.decrypt(current_user.password).decode('utf-8')
     hosts = db.session.execute(db.select(Routers).order_by(Routers.hostname)).scalars().all()
     form.hostname.choices = [(host.ip_address, host.hostname) for host in hosts]
-    current_user_decrypted_password = fernet_key.decrypt(current_user.password).decode('utf-8')
 
     # Atualiza as choices do neighbor baseado no grupo recebido
     if form.group.data:
