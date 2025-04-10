@@ -28,7 +28,8 @@ class SetIntAe0UnitVlanForm(FlaskForm):
         ]
     )
     bandwidth = IntegerField(
-        'Bandwidth', validators=[
+        label='Bandwidth, Ex: 1000',
+        validators=[
             DataRequired(),
             NumberRange(min=1, max=9999)
         ]
@@ -41,14 +42,14 @@ class SetIntAe0UnitVlanForm(FlaskForm):
         ]
     )
     ipv6_gw = StringField(
-        label='IPv6 Gateway, Ex: 2001:db0::1/126',
+        label='IPv6 Gateway, Ex: 2001:db8::1/126',
         validators=[
             DataRequired(),
             validate_ip_with_cidr,
         ]
     )
     ipv6_48 = StringField(
-        label='Prefix /48, Ex: 2001:db0::/48',
+        label='Prefix /48, Ex: 2001:db8::/48',
         validators=[
             DataRequired(),
             validate_ip_with_cidr,
