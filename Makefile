@@ -24,9 +24,9 @@ install: venv
 	@echo "Dependencies installed."
 	@$(PIP) install -r requirements.txt  --no-cache-dir > /dev/null
 
-run:
+run: flake
 	@export PYTHONDONTWRITEBYTECODE=1 FLASK_APP=run.py && \
-	$(PYTHON) -m flask run --debug
+	$(PYTHON) -m flask run --debug --host=0.0.0.0
 
 clean:
 	@find . -type d \( -name "__pycache__" -o -name ".pytest_cache" \) -exec rm -rf {} +
