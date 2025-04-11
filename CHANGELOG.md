@@ -1,3 +1,9 @@
+## v0.17.2 (2025-04-11)
+
+### Fix
+
+- **app/controllers/routes/junos/bgp_manager.py**: fix order of the show in bgp manager list
+
 ## v0.17.1 (2025-04-09)
 
 ### Fix
