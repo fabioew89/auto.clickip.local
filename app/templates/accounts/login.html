@@ -21,6 +21,7 @@
         <div class="bg-white shadow p-5 border border-primary rounded-3">
 
             <h1 class="h3 text-center mb-4">Sign in</h1>
+
             <form action="{{ url_for('auth_bp.login') }}" method="post" autocomplete="on">
                 {{ form.hidden_tag() }}
 

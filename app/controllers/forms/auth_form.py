@@ -5,54 +5,63 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField
 
 class LoginForm(FlaskForm):
     username = StringField(
-        'Username', validators=[
+        label='Username',
+        validators=[
             DataRequired(),
             Length(max=30),
         ]
     )
 
     password = PasswordField(
-        'Password', validators=[
+        label='Password',
+        validators=[
             DataRequired(),
             Length(max=30),
         ]
     )
 
     checkbox = BooleanField(
-        'Remember me!', default=True
+        label='Remember me!',
+        default=True
     )
 
-    submit = SubmitField('Entrar')
+    submit = SubmitField(label='Entrar')
 
 
 class RegisterForm(FlaskForm):
     username = StringField(
-        'Username', validators=[
+        label='Username',
+        validators=[
             DataRequired(),
             Length(max=30),
         ]
     )
 
     password = PasswordField(
-        'Password', validators=[
+        label='Password',
+        validators=[
             DataRequired(),
-            Length(max=30),
+            Length(min=6, max=30),
         ]
     )
 
     confirm_password = PasswordField(
-        'Confirm Password', validators=[
+        label='Confirm Password',
+        validators=[
             DataRequired(),
             Length(max=30),
-            EqualTo('password')
+            EqualTo('password', message='Your password and confir password must be equal!!!')
         ]
     )
 
     checkbox = BooleanField(
-        'Accept Terms', validators=[
+        label='Accept Terms',
+        validators=[
             DataRequired()
         ],
         default=False
     )
 
-    submit = SubmitField('Entrar')
+    submit = SubmitField(
+        label='Entrar'
+    )

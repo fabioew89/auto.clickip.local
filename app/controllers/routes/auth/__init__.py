@@ -1,11 +1,14 @@
 import os
-from app import db
+from app import db, create_app
 from app.models import Users
-from dotenv import load_dotenv
-from cryptography.fernet import Fernet
 from app.controllers.forms import LoginForm, RegisterForm
+
 from flask_login import login_required, login_user, logout_user
 from flask import Blueprint, render_template, redirect, url_for, flash
+
+
+from dotenv import load_dotenv
+from cryptography.fernet import Fernet
 
 load_dotenv()
 
@@ -55,7 +58,24 @@ def register():
     form = RegisterForm()
 
     if form.validate_on_submit():
-        pass  # Register user
+        new_user = form.username.data
+        new_pass = form.password.data
+
+        app = create_app()
+
+        with app.app_context():
+
+            if not db.session.execute(db.select(Users).filter_by(username=new_user)).first():
+                encrypted_password = fernet_key.encrypt(new_pass.encode('utf-8'))
+                new_user_add = Users(username=new_user, password=encrypted_password, is_admin=False)
+
+                db.session.add(new_user_add)
+                db.session.commit()
+
+                return redirect(url_for('auth_bp.login'))
+
+            else:
+                flash(message='Username already exist', category='danger')
 
     if form.errors:
         for field_name, error_messages in form.errors.items():
@@ -64,7 +84,8 @@ def register():
 
     return render_template(
         'accounts/register.html',
-        form=form)
+        form=form
+    )
 
 
 @auth_bp.route('/logout')
