@@ -73,9 +73,9 @@ def get_neighbors():
         return jsonify({"error": "O campo 'group' é obrigatório"}), 400
 
     if group == 'Sessoes_Transito_IPv4':
-        neighbors = db.session.execute(db.select(NeighborBgpIpv4).order_by(NeighborBgpIpv4.id)).scalars().all()
+        neighbors = db.session.execute(db.select(NeighborBgpIpv4).order_by(NeighborBgpIpv4.description)).scalars().all()
     else:
-        neighbors = db.session.execute(db.select(NeighborBgpIpv6).order_by(NeighborBgpIpv6.id)).scalars().all()
+        neighbors = db.session.execute(db.select(NeighborBgpIpv6).order_by(NeighborBgpIpv6.description)).scalars().all()
 
     response = jsonify([{"neighbor": n.neighbor, "description": n.description} for n in neighbors])
     return response
