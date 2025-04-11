@@ -24,7 +24,7 @@ install: venv
 	@echo "Dependencies installed."
 	@$(PIP) install -r requirements.txt  --no-cache-dir > /dev/null
 
-run: flake
+run:
 	@export PYTHONDONTWRITEBYTECODE=1 FLASK_APP=run.py && \
 	$(PYTHON) -m flask run --debug --host=0.0.0.0
 
