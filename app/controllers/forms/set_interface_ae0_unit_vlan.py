@@ -35,7 +35,7 @@ class SetIntAe0UnitVlanForm(FlaskForm):
         ]
     )
     ipv4_gw = StringField(
-        label='IPv4 with CIDR, Ex: 192.168.0.1/30',
+        label='IPv4 with CIDR, Ex: 192.168.0.0/30',
         validators=[
             DataRequired(),
             validate_ip_with_cidr,
