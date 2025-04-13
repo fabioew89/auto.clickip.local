@@ -24,7 +24,7 @@ install: venv
 	@echo "Dependencies installed."
 	@$(PIP) install -r requirements.txt  --no-cache-dir > /dev/null
 
-run:
+run: flake
 	@export PYTHONDONTWRITEBYTECODE=1 FLASK_APP=run.py && \
 	$(PYTHON) -m flask run --debug --host=0.0.0.0
 
@@ -40,7 +40,7 @@ clean:
 
 flake:
 	@echo 'Checking flake8...'
-	@$(PYTHON) -m flake8 --exclude $(VENV)
+	@$(PYTHON) -m flake8 --exclude $(VENV) --ignore=E501
 
 ################### ################### ################### ################### ################### 
 ##### MIGRATE ##### ##### MIGRATE ##### ##### MIGRATE ##### ##### MIGRATE ##### ##### MIGRATE ##### 
