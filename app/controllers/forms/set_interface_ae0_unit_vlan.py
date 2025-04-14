@@ -1,6 +1,6 @@
 import ipaddress
 from flask_wtf import FlaskForm
-from wtforms.validators import DataRequired, NumberRange, IPAddress
+from wtforms.validators import DataRequired, NumberRange  # IPAddress
 from wtforms import StringField, SubmitField, SelectField, IntegerField
 
 
