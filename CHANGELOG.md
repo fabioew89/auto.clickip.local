@@ -1,3 +1,15 @@
+## v0.19.0 (2025-04-15)
+
+### Feat
+
+- **sidebar.html**: add new link do mpls
+- **app/controllers/netmiko/dmos/get_mpls_brief.py**: add new feature, get_mpls_brief
+
+### Fix
+
+- **__init__.py**: delete all import, it no more necessary
+- **app/config.py**: changed NETMIKO_PORT to NETMIKO_SSH_PORT
+
 ## v0.18.0 (2025-04-15)
 
 ### Feat
