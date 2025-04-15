@@ -1,3 +1,15 @@
+## v0.18.0 (2025-04-15)
+
+### Feat
+
+- **app/templates/includes/scripts.html**: changed place of the validate before submit a form to includes/scripts.html
+- **Makefile**: upt makefile with flake8 --ignore E501 error
+
+### Fix
+
+- **app/controllers/netmiko/dmos/mpls_seg_one.py**: WIP in mpls_seg_one.py
+- **app/controllers/forms/set_interface_ae0_unit_vlan.py**: comment IPAddress validate in set_interface_ae0_unit_vlan.py
+
 ## v0.17.2 (2025-04-11)
 
 ### Fix
