@@ -10,7 +10,7 @@ def bgp_manager(hostname, username, password, action, group, neighbor):
         'host': hostname,
         'username': username,
         'password': password,
-        'port': app.config.get('NETMIKO_PORT'),
+        'port': app.config.get('NETMIKO_SSH_PORT'),
         'timeout': app.config.get('NETMIKO_TIMEOUT'),
         'session_timeout': app.config.get('NETMIKO_SESSION_TIMEOUT'),
     }

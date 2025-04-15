@@ -9,7 +9,7 @@ def set_static_route(hostname, username, password, network_dest, next_hop):
         'host': hostname,
         'username': username,
         'password': password,
-        'port': os.getenv('NETMIKO_PORT'),
+        'port': os.getenv('NETMIKO_SSH_PORT'),
         'timeout': os.getenv('NETMIKO_TIMEOUT'),
         'session_timeout': os.getenv('NETMIKO_SESSION_TIMEOUT'),
     }

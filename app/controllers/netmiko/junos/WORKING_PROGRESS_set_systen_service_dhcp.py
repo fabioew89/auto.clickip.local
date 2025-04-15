@@ -19,7 +19,7 @@ def set_access_address_assignment(
         'host': hostname,
         'username': username,
         'password': password,
-        'port': os.getenv('NETMIKO_PORT'),
+        'port': os.getenv('NETMIKO_SSH_PORT'),
         'timeout': os.getenv('NETMIKO_TIMEOUT'),
         'session_timeout': os.getenv('NETMIKO_SESSION_TIMEOUT'),
     }

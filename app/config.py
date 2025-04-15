@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('SQLALCHEMY_SECRET_KEY')
 WEB_RELOADER = False
 
 # SSH port for connecting to the device (default is 22)
-NETMIKO_PORT = 22
+NETMIKO_SSH_PORT = 22
 
 # General timeout for the connection attempt (in seconds)
 NETMIKO_TIMEOUT = 30
