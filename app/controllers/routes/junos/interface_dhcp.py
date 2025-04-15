@@ -3,7 +3,7 @@ from app import db
 from dotenv import load_dotenv
 from app.models import Routers
 from cryptography.fernet import Fernet
-from app.controllers.forms import AddressAssignmentForm
+from app.controllers.forms.set_access_address_assignment import AddressAssignmentForm
 from flask import Blueprint, request, render_template, flash
 from flask_login import current_user, login_required, fresh_login_required
 

@@ -1,7 +1,7 @@
 import os
 from app import db, create_app
 from app.models import Users
-from app.controllers.forms import LoginForm, RegisterForm
+from app.controllers.forms.auth_form import LoginForm, RegisterForm
 
 from flask_login import login_required, login_user, logout_user
 from flask import Blueprint, render_template, redirect, url_for, flash
