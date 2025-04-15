@@ -201,20 +201,27 @@
             <hr>
             <li>
                 <a href="{{ url_for('bgp_manager_bp.bgp_manager') }}">
-                    <i class="fa fa-gear"></i>BGP Manager Session
+                    <i class="fa fa-gear"></i>BGP Manager
                 </a>
             </li>
         </ul><!-- collapse -->
 
         <a href="#" data-bs-toggle="collapse" role="button">
-            <i class="fa fa-server"></i>DMOS
+            <i class="fa fa-server"></i>DmOS
         </a><!-- toggle -->
 
-        <div class="collapse show" id="OLTs"><!-- collapse -->
-            <a href="{{ url_for('downstream_fec_bp.downstream_fec') }}">
-                <i class="fa fa-gear"></i>Downstream-fec
-            </a>
-        </div><!-- collapse -->
+        <ul class="collapse show" id="OLTs"><!-- collapse -->
+            <li>
+                <a href="{{ url_for('downstream_fec_bp.downstream_fec') }}">
+                    <i class="fa fa-gear"></i>Downstream-fec
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-gear"></i>MPLS
+                </a>
+            </li>
+        </ul><!-- collapse -->
 
     </div><!-- sidenav -->
 
