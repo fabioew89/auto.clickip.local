@@ -17,3 +17,13 @@
 
 <!-- Personal JS -->
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+<!-- Validação antes de enviar o  submit -->
+<script>
+    function mySubmitFunction() {
+        if (!confirm("Deseja realizar as configurações?")) {
+            return false
+        }
+        return true
+    }
+</script>

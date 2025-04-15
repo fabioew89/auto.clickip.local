@@ -5,7 +5,8 @@
 
 <hr>
 
-<form method="POST" action="{{url_for('downstream_fec_bp.downstream_fec')}}" autocomplete="on">
+<form method="POST" action="{{url_for('downstream_fec_bp.downstream_fec')}}" onsubmit="return mySubmitFunction()"
+    autocomplete="on">
     {{ form.hidden_tag() }}
 
     <div class="row mb-3">

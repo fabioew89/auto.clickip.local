@@ -6,7 +6,8 @@
 
 <hr />
 
-<form action="{{url_for('set_interface_ae0_unit_vlan_bp.interface_unit')}}" method="POST" onsubmit="return mySubmitFunction()" autocomplete="on">
+<form action="{{url_for('set_interface_ae0_unit_vlan_bp.interface_unit')}}" method="POST"
+  onsubmit="return mySubmitFunction()" autocomplete="on">
 
   {{ form.hidden_tag() }}
 
@@ -100,14 +101,5 @@
 
 <small class="text-muted">f'set interfaces ae0 unit {unit}'</small>
 <pre class="border border-3 rounded-3 p-3">{{ output }}</pre>
-
-<script>
-  function mySubmitFunction() {
-    if (!confirm("Deseja realizar as configurações?")) {
-      return false
-    }
-    return true
-  }
-</script>
 
 {% endblock %}
