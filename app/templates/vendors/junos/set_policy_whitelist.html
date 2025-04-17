@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Set Policy Whitelist</h1>
+
+<hr />
+
+<form action="{{ url_for('set_policy_whitelist_bp.set_policy_whitelist') }}" method="POST"
+    onsubmit="return mySubmitFunction()" autocomplete="on">
+
+    {{ form.hidden_tag() }}
+
+    <div class="row mb-3">
+        <div class="col">
+            <div class="form-floating">
+                {{ form.hostname(class="form-control") }}
+                {{ form.hostname.label }}
+            </div>
+        </div>
+    </div><!-- hostname -->
+
+    <div class="row mb-3">
+        <div class="col">
+            <div class="form-floating">
+                {{ form.prefix_address(class="form-control") }}
+                {{ form.prefix_address.label }}
+            </div>
+        </div>
+    </div><!-- prefix /32 -->
+
+
+    <div class="d-flex justify-content-between">
+        {{ form.submit(class="btn btn-primary") }}
+        <button type="reset" class="btn btn-danger">Reset</button>
+    </div>
+    <!-- buttons -->
+
+</form>
+
+<br>
+
+<small class="text-muted">f'show configuration policy-options prefix-list whitelist-dst | display set | match
+    {prefix}'</small>
+<pre class="border border-3 rounded-3 p-3">{{ output }}</pre>
+
+{% endblock %}
