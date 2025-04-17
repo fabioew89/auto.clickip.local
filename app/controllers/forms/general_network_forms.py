@@ -3,9 +3,9 @@ from wtforms.validators import DataRequired, IPAddress
 from wtforms import SelectField, StringField, SubmitField
 
 
-class GeneralNetworkForm(FlaskForm):
+class SetPolicyWhitelistForm(FlaskForm):
     hostname = SelectField(
-        label='Router',
+        label='Hostname',
         choices=[],
         default=None
     )
@@ -20,4 +20,16 @@ class GeneralNetworkForm(FlaskForm):
 
     submit = SubmitField(
         label='Commit'
+    )
+
+
+class GetPolicyWhitelistForm(FlaskForm):
+    hostname = SelectField(
+        label='Hostname',
+        choices=[],
+        default=None
+    )
+
+    submit = SubmitField(
+        label='Enviar'
     )
