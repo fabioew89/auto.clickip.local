@@ -72,5 +72,5 @@ class GetMplsForm(FlaskForm):
     )
 
     submit = SubmitField(
-        label='Commitar'
+        label='Commit'
     )

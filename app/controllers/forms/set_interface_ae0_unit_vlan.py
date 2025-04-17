@@ -55,4 +55,4 @@ class SetIntAe0UnitVlanForm(FlaskForm):
             validate_ip_with_cidr,
         ]
     )
-    submit = SubmitField('Commitar')
+    submit = SubmitField('Commit')
