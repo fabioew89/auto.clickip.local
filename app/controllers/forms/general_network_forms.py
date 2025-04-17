@@ -5,7 +5,7 @@ from wtforms import SelectField, StringField, SubmitField
 
 class GeneralNetworkForm(FlaskForm):
     hostname = SelectField(
-        label='Rotuer',
+        label='Router',
         choices=[],
         default=None
     )
