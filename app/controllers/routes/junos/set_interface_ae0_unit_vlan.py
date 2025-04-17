@@ -27,7 +27,7 @@ fernet_key = Fernet(os.getenv('MY_FERNET_KEY'))
 def interface_unit():
     form = SetIntAe0UnitVlanForm()
     user_decrypted_password = fernet_key.decrypt(current_user.password).decode('utf-8')
-    hosts = db.session.execute(db.select(Routers).order_by(Routers.hostname)).scalars()
+    hosts = db.session.execute(db.select(Routers).order_by(Routers.ip_address)).scalars()
     form.hostname.choices = [(host.ip_address, host.hostname) for host in hosts]
     output = None
 

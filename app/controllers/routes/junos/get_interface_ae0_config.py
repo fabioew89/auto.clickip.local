@@ -22,7 +22,7 @@ fernet_key = Fernet(os.getenv('MY_FERNET_KEY'))
 @fresh_login_required
 def interface_configuration():
     form = GetIntConfForm()
-    hosts = db.session.execute(db.select(Routers).order_by(Routers.hostname)).scalars().all()
+    hosts = db.session.execute(db.select(Routers).order_by(Routers.ip_address)).scalars().all()
     form.hostname.choices = [(h.ip_address, h.hostname) for h in hosts]
     current_user_decrypted_password = fernet_key.decrypt(current_user.password).decode('utf-8')
 
