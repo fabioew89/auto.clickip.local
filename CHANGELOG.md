@@ -1,3 +1,22 @@
+## v0.20.0 (2025-04-22)
+
+### Feat
+
+- **get_policy_whitelist**: add new feature, get policy prefix list whitelist
+- **set_policy_whitelist**: add new feature, set policy prefixlist whitelist-dst
+- **get_mpls_brief.html**: add new feat, but not ready yet, WIP
+
+### Fix
+
+- **flash_messages.html**: add z-index: 1 and delay time to 5s
+- **general_network_forms**: fix label to router
+- **app/controllers/forms/**: fix commitar to commit in some forms
+- **get_interface_ae0_config**: changed description order to ip_address, in some routes
+
+### Refactor
+
+- **app/controllers/admin/admin.py**: refact /admin
+
 ## v0.19.0 (2025-04-15)
 
 ### Feat
