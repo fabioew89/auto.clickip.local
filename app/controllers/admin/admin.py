@@ -18,20 +18,65 @@ path = os.path.join(os.path.dirname(__file__), 'static')
 
 
 class UserView(ModelView):
+    # Permissões de visualização e edição
     def is_accessible(self):
-        return current_user.is_authenticated and current_user.is_admin
+        return current_user.is_authenticated
 
     def inaccessible_callback(self, name, **kwargs):
         return redirect(url_for('auth_bp.login'))
 
+    def get_query(self):
+        # Admin vê todos, usuário comum só vê a si mesmo
+        if current_user.is_admin:
+            return super().get_query()
+        return super().get_query().filter(self.model.id == current_user.id)
+
+    def get_count_query(self):
+        if current_user.is_admin:
+            return super().get_count_query()
+        return super().get_count_query().filter(self.model.id == current_user.id)
+
+    def scaffold_form(self):
+        form_class = super().scaffold_form()
+        # Só admin pode ver/editar o campo is_admin
+        if not getattr(current_user, 'is_authenticated', False) or not getattr(current_user, 'is_admin', False):
+            if hasattr(form_class, 'is_admin'):
+                delattr(form_class, 'is_admin')
+        return form_class
+
+    def on_model_change(self, form, model, is_created):
+        # Criptografa a senha se foi alterada
+        if form.password.data:
+            fernet_key = Fernet(os.getenv('MY_FERNET_KEY'))
+            model.password = fernet_key.encrypt(form.password.data.encode('utf-8'))
+        # Usuário comum só pode editar a si mesmo
+        if not current_user.is_admin and model.id != current_user.id:
+            raise Exception("Você só pode editar seus próprios dados.")
+        # Usuário comum não pode se tornar admin
+        if not current_user.is_admin:
+            model.is_admin = False
+
+    # Permissões de criação e deleção
+    def can_create(self):
+        return getattr(current_user, 'is_authenticated', False) and getattr(current_user, 'is_admin', False)
+
+    def can_delete(self, obj=None):
+        return current_user.is_admin or (obj and obj.id == current_user.id)
+
+    def can_edit(self, obj=None):
+        return current_user.is_admin or (obj and obj.id == current_user.id)
+
+    # Configurações de exibição
     edit_modal = details_modal = True
     can_view_details = can_set_page_size = True
-    can_edit = can_create = can_export = can_delete = True
+    can_export = True
 
     column_default_sort = 'username'
-    column_exclude_list = 'password'
+    column_exclude_list = ['password']
 
-    column_searchable_list = column_filters = column_editable_list = ['username', 'is_admin']
+    column_searchable_list = ['username']
+    column_filters = ['username', 'is_admin']
+    column_editable_list = ['username']  # Apenas admin pode editar is_admin
 
     form_overrides = {
         'password': PasswordField
@@ -43,13 +88,8 @@ class UserView(ModelView):
                 InputRequired(),
                 Length(min=6, max=30)
             ],
-        }
+        },
     }
-
-    def on_model_change(self, form, model, is_created):
-        fernet_key = Fernet(os.getenv('MY_FERNET_KEY'))
-        if form.password.data:
-            model.password = fernet_key.encrypt(form.password.data.encode('utf-8'))
 
 
 class DeviceView(ModelView):
