@@ -5,7 +5,7 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField
 
 class LoginForm(FlaskForm):
     username = StringField(
-        label='Username',
+        label='',
         validators=[
             DataRequired(),
             Length(max=30),
@@ -13,7 +13,7 @@ class LoginForm(FlaskForm):
     )
 
     password = PasswordField(
-        label='Password',
+        label='',
         validators=[
             DataRequired(),
             Length(max=30),
@@ -63,5 +63,5 @@ class RegisterForm(FlaskForm):
     )
 
     submit = SubmitField(
-        label='Entrar'
+        label='Cadastrar'
     )

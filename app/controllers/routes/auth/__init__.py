@@ -37,7 +37,7 @@ def login():
 
         if username_recorder and check_password(username_recorder.password, form.password.data):
             login_user(username_recorder, remember=form.checkbox.data)
-            flash(f'Login success {form.username.data}', category='success')
+            flash(f'Bem vindo, {form.username.data}', category='success')
             return redirect(url_for('int_summary_bp.interface_summary'))
 
         else:
@@ -92,5 +92,5 @@ def register():
 @login_required
 def logout():
     logout_user()
-    flash('Login out!!!', category='info')
+    flash('Saindo...', category='info')
     return redirect(url_for('auth_bp.login'))

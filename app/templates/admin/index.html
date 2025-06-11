@@ -2,14 +2,132 @@
 {% block body %}
 {{ super() }}
 
-<div>
-    {% if current_user.is_authenticated %}
-    <h1>Flask-Admin example</h1>
-    <p class="lead">Authentication</p>
-    <p>This example shows how you can use Flask-Login for authentication. It is only intended as a basic demonstration.
-    </p>
-    {% endif %}
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  body {
+    background: #23272f;
+    color: #f7f7fa;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .navbar {
+    background: #181b21;
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #31343b;
+    margin-bottom: 32px;
+  }
+  .navbar-title {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #61dafb;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+  }
+  .navbar-title i {
+    margin-right: 12px;
+    color: #fff;
+  }
+  .nav-user {
+    color: #bdbdbd;
+  }
+  .panel-content {
+    background-color: #272b34;
+    margin: 0 auto;
+    max-width: 500px;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+    padding: 36px 42px;
+    margin-bottom: 48px;
+  }
+  .headline {
+    color: #dfdfdf;
+    font-size: 1.25em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+  }
+  .headline i {
+    color: #6fcf97;
+    margin-right: 8px;
+  }
+  .desc, .auth-info, .not-auth {
+    color: #a0aec0;
+    margin-bottom: 30px;
+    line-height: 1.6;
+  }
+  .not-auth {
+    color: #ff6565;
+    background: rgba(65,0,0,0.09);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: bold;
+    font-size: 1.1em;
+    border: 1px solid #ff8585;
+  }
+  .btn-back {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 10px 22px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #576574 0%, #374151 100%);
+    color: #ececec;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  .btn-back:hover {
+    background: linear-gradient(90deg, #61dafb 0%, #253341 100%);
+    color: #151721;
+  }
+  .user-info {
+    color: #ffd86b;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+  }
+</style>
+
+<div class="navbar">
+    <span class="navbar-title"><i class="fas fa-user-shield"></i> Segurança</span>
+    <span class="nav-user">
+        {% if current_user.is_authenticated %}
+            <i class="fas fa-user"></i> {{ current_user.username }}
+        {% endif %}
+    </span>
 </div>
 
-<a class="btn btn-primary" href="/"><i class="icon-arrow-left icon-white"></i> Back</a>
+<div class="panel-content">
+    <div class="headline"><i class="fas fa-lock"></i> Painel de Autenticação</div>
+    {% if current_user.is_authenticated %}
+        <div class="user-info">
+            <i class="fas fa-user-check"></i>
+            {{ current_user.username }}
+        </div>
+        <div class="auth-info">
+            <b>Informação de autenticação:</b><br>
+            Usuário atual está em <strong>modo admin</strong>.
+        </div>
+    {% else %}
+        <div class="not-auth">
+            <i class="fas fa-exclamation-circle"></i>
+            voce nao está em modo admin
+        </div>
+    {% endif %}
+
+    <a href="javascript:history.back()" class="btn-back"><i class="fas fa-arrow-left"></i> Voltar</a>
+</div>
+
 {% endblock body %}

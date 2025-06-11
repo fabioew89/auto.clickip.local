@@ -1,81 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>MPLS - Segment One</h1>
+<h1>Consultar MPLS BRIEF</h1>
 
 <hr>
 
-<form method="POST" action="#" onsubmit="return mySubmitFunction()" autocomplete="on">
+<form method="POST" action="{{url_for('get_mpls_brief_bp.get_mpls_brief')}}" autocomplete="on">
     {{ form.hidden_tag() }}
 
-    <div class="row mb-3">
+    <div class="row g-3 mb-3">
         <div class="col">
             <div class="form-floating">
                 {{ form.hostname(class="form-control") }}
                 {{ form.hostname.label }}
             </div>
         </div>
-    </div>
 
-    <div class="row g-3 mb-3">
-        <div class="col-3">
+        <div class="col">
             <div class="form-floating">
                 {{ form.tunnel_vlan(class="form-control") }}
                 {{ form.tunnel_vlan.label }}
             </div>
-        </div><!-- tunnel_vlan -->
-
-        <div class="col">
-            <div class="form-floating">
-                {{ form.service(class="form-control") }}
-                {{ form.service.label }}
-            </div>
-        </div><!-- service -->
-        <div class="col">
-            <div class="form-floating">
-                {{ form.state(class="form-control") }}
-                {{ form.state.label }}
-            </div>
-        </div><!-- state -->
-        <div class="col">
-            <div class="form-floating">
-                {{ form.city(class="form-control") }}
-                {{ form.city.label }}
-            </div>
-        </div><!-- city -->
-        <div class="col">
-            <div class="form-floating">
-                {{ form.number(class="form-control") }}
-                {{ form.number.label }}
-            </div>
         </div>
-    </div><!-- designação -->
-
-    <div class="row g-3 mb-3">
-        <div class="col">
-            <div class="form-floating">
-                {{ form.neighbor(class="form-control") }}
-                {{ form.neighbor.label }}
-            </div>
-        </div>
-        <div class="col">
-            <div class="form-floating">
-                {{ form.port_dest(class="form-control") }}
-                {{ form.port_dest.label }}
-            </div>
-        </div>
-    </div><!-- neighbor / port -->
+    </div>
 
     <div class="d-flex justify-content-between">
         {{ form.submit(class="btn btn-primary") }}
-        <!-- <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Preview</button> -->
-        <button type="reset" class="btn btn-danger">Reset</button>
     </div>
     <!-- buttons -->
 </form>
 
 <br>
 
-<smal class="text-muted"> show interface gpon {chassis}/{slot}/{port_id} </smal>
+<smal class="text-muted"> show mpls l2vpn vpls-group brief | include ${vlan} </smal>
 <pre class="border border-3 rounded-3 p-3">{{ output }}</pre>
 {% endblock %}

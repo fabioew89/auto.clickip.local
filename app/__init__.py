@@ -31,7 +31,7 @@ def create_app():
 
     # Login configurations
     lm.login_view = 'auth_bp.login'                          # Defines the default login route
-    lm.login_message = 'Please log in to access this page.'  # Message displayed when accessing a protected page without logging in
+    lm.login_message = 'Faça o login'  # Message displayed when accessing a protected page without logging in
     lm.login_message_category = 'info'                       # Category of the login message
     lm.session_protection = "strong"                         # Level of session protection
 

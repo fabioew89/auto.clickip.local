@@ -4,19 +4,19 @@ from wtforms import SelectField, SubmitField
 
 class Downstream_fec_form(FlaskForm):
     hostname = SelectField(
-        'Hostname', choices=[]
+        'OLT', choices=[]
     )
 
     chassis = SelectField(
-        'Chassis', choices=[('1', '1')]
+        'chassi', choices=[('1', '1')]
     )
 
     slot = SelectField(
-        'Slot', choices=[('1', '1'), ('2', '2')]
+        'slot', choices=[('1', '1'), ('2', '2')]
     )
 
     port_id = SelectField(
-        'Id', choices=[
+        'gpon', choices=[
             ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'),
             ('5', '5'), ('6', '6'), ('7', '7'), ('8', '8'),
             ('9', '9'), ('10', '10'), ('11', '11'), ('12', '12'),
@@ -29,11 +29,12 @@ class Downstream_fec_form(FlaskForm):
     )
 
     dmos_command = SelectField(
-        'dmos_Command', choices=[
-            ('no downstream-fec', 'no downstream-fec'),
-            ('downstream-fec', 'downstream-fec'),
+        label='Ativar / Desativar',
+        choices=[
+            ('downstream-fec', 'Habilitar'),
+            ('no downstream-fec', 'Desabilitar'),
         ],
-        default='downstream-fec'
+        # default='downstream-fec'
     )
 
     submit = SubmitField('Commit')
