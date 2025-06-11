@@ -6,62 +6,365 @@
 </head>
 
 <style>
-    /* this block is a trivial config, will changed in future */
+    /* Dark theme register interface styles with refined accent colors */
     .dev {
         height: 100vh;
+        background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+        position: relative;
+        overflow: hidden;
+    }
 
+    /* Animated background elements */
+    .dev::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(64,224,208,0.3)"/><circle cx="75" cy="75" r="1.5" fill="rgba(224,125,64,0.4)"/><circle cx="50" cy="10" r="0.5" fill="rgba(64,80,224,0.3)"/><circle cx="10" cy="60" r="0.8" fill="rgba(64,224,208,0.3)"/><circle cx="90" cy="40" r="0.5" fill="rgba(224,125,64,0.2)"/><circle cx="30" cy="80" r="0.3" fill="rgba(64,80,224,0.2)"/></pattern></defs><rect width="100" height="100" fill="url(%23stars)"/></svg>');
+        animation: float 25s ease-in-out infinite;
+        z-index: 0;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-30px) rotate(180deg); }
+    }
+
+    /* Enhanced dark register card */
+    .register-card {
+        background: rgba(17, 24, 39, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(64, 224, 208, 0.15);
+        border-radius: 20px;
+        box-shadow: 
+            0 25px 45px rgba(0, 0, 0, 0.3),
+            0 0 0 1px rgba(64, 224, 208, 0.08),
+            inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        padding: 3rem;
+        min-width: 450px;
+        position: relative;
+        z-index: 1;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .register-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 
+            0 35px 65px rgba(0, 0, 0, 0.4),
+            0 0 0 1px rgba(64, 224, 208, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    /* Enhanced dark title */
+    .register-title {
+        color: #f8fafc;
+        font-weight: 700;
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        position: relative;
+        text-shadow: 0 0 15px rgba(64, 224, 208, 0.2);
+    }
+
+    .register-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 3px;
+        background: linear-gradient(90deg, #40E0D0, rgba(64, 224, 208, 0.3));
+        border-radius: 2px;
+        box-shadow: 0 0 8px rgba(64, 224, 208, 0.3);
+    }
+
+    /* Enhanced dark form labels */
+    .form-label {
+        color: #cbd5e1;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: block;
+    }
+
+    /* Enhanced dark input groups - more professional */
+    .input-group {
+        margin-bottom: 1.5rem;
+        position: relative;
+    }
+
+    .input-group-text {
+        background: linear-gradient(135deg, #374151, #4b5563);
+        border: 1px solid rgba(75, 85, 99, 0.4);
+        color: #9ca3af;
+        border-radius: 12px 0 0 12px;
+        width: 50px;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    .form-control {
+        border: 2px solid rgba(75, 85, 99, 0.4);
+        border-left: none;
+        border-radius: 0 12px 12px 0;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: rgba(31, 41, 55, 0.8);
+        color: #f8fafc;
+    }
+
+    .form-control::placeholder {
+        color: #9ca3af;
+    }
+
+    .form-control:focus {
+        border-color: #40E0D0;
+        box-shadow: 0 0 0 3px rgba(64, 224, 208, 0.1);
+        background: rgba(31, 41, 55, 0.95);
+        color: #f8fafc;
+    }
+
+    .input-group:focus-within .input-group-text {
+        background: linear-gradient(135deg, #40E0D0, #36d3bb);
+        color: white;
+        border-color: rgba(64, 224, 208, 0.3);
+        box-shadow: 0 0 10px rgba(64, 224, 208, 0.2);
+    }
+
+    /* Enhanced dark checkbox - more subtle */
+    .form-check {
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .form-check-input {
+        width: 1.2rem;
+        height: 1.2rem;
+        border-radius: 4px;
+        border: 2px solid rgba(75, 85, 99, 0.5);
+        transition: all 0.3s ease;
+        background: rgba(31, 41, 55, 0.8);
+        margin-right: 0.5rem;
+    }
+
+    .form-check-input:checked {
+        background: linear-gradient(135deg, #40E0D0, #36d3bb);
+        border-color: #40E0D0;
+        box-shadow: 0 0 8px rgba(64, 224, 208, 0.3);
+    }
+
+    .form-check-label {
+        color: #cbd5e1;
+        font-weight: 500;
+        margin: 0;
+    }
+
+    /* Enhanced dark submit button - more professional */
+    .btn-primary {
+        background: linear-gradient(135deg, #40E0D0 0%, #36d3bb 100%);
+        border: 1px solid rgba(64, 224, 208, 0.3);
+        border-radius: 12px;
+        padding: 0.875rem 2rem;
+        font-weight: 600;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        color: white;
+        box-shadow: 0 0 15px rgba(64, 224, 208, 0.2);
+    }
+
+    .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+        transition: left 0.5s;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(64, 224, 208, 0.3);
+        background: linear-gradient(135deg, #36d3bb 0%, #2cc5b3 100%);
+        border-color: rgba(64, 224, 208, 0.4);
+    }
+
+    .btn-primary:hover::before {
+        left: 100%;
+    }
+
+    .btn-primary:active {
+        transform: translateY(0);
+    }
+
+    .btn-primary:focus {
+        box-shadow: 0 0 0 3px rgba(64, 224, 208, 0.2);
+    }
+
+    /* Enhanced dark links - more subtle */
+    .login-link {
+        color: #cbd5e1;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    .login-link a {
+        color: #40E0D0;
+        text-decoration: none;
+        font-weight: 600;
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+    .login-link a::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #40E0D0;
+        transition: width 0.3s ease;
+    }
+
+    .login-link a:hover {
+        color: #5ce8d7;
+        text-shadow: 0 0 8px rgba(64, 224, 208, 0.3);
+    }
+
+    .login-link a:hover::after {
+        width: 100%;
+    }
+
+    /* Dark scrollbar - simplified */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #1f2937;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #40E0D0, #36d3bb);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(135deg, #36d3bb, #2cc5b3);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .register-card {
+            min-width: 90%;
+            padding: 2rem;
+            margin: 1rem;
+        }
+        
+        .dev {
+            padding: 1rem;
+        }
+    }
+
+    /* Loading animation for form submission */
+    .btn-primary.loading {
+        pointer-events: none;
+        position: relative;
+    }
+
+    .btn-primary.loading::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 50%;
+        left: 50%;
+        margin-left: -10px;
+        margin-top: -10px;
+        border: 2px solid transparent;
+        border-top: 2px solid #ffffff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* Auto-fill styles for dark theme */
+    .form-control:-webkit-autofill,
+    .form-control:-webkit-autofill:hover,
+    .form-control:-webkit-autofill:focus {
+        -webkit-box-shadow: 0 0 0 1000px rgba(31, 41, 55, 0.95) inset;
+        -webkit-text-fill-color: #f8fafc;
+        transition: background-color 5000s ease-in-out 0s;
     }
 </style>
 
 <body>
     {% include 'includes/flash_messages.html' %}
 
-    <div class="dev d-flex justify-content-center align-items-center bg-light">
+    <div class="dev d-flex justify-content-center align-items-center">
 
-        <div class="border rounded-3 border-primary shadow bg-white p-5">
+        <div class="register-card">
 
-            <h1 class="h3 text-center mb-4">Create Account</h1>
+            <h1 class="register-title text-center">Cadastro</h1>
             
             <form action="{{ url_for('auth_bp.register') }}" method="post" autocomplete="on">
                 {{ form.hidden_tag() }}
 
                 <!-- username -->
-                <label>Your user</label>
-                <div class="input-group mb-2">
+                <label class="form-label">Username</label>
+                <div class="input-group">
                     <span class="input-group-text">
                         <i class="fas fa-user"></i>
                     </span>
-                    {{ form.username(class="form-control", placeholder="Your user") }}
+                    {{ form.username(class="form-control", placeholder="Digite seu user tacas") }}
                 </div>
 
                 <!-- password -->
-                <label class="bold">Your password</label>
-                <div class="input-group mb-3">
+                <label class="form-label">Password</label>
+                <div class="input-group">
                     <span class="input-group-text">
                         <i class="fas fa-lock"></i>
                     </span>
-                    {{ form.password(class="form-control", placeholder="Your password") }}
+                    {{ form.password(class="form-control", placeholder="Digite seu pass tacas") }}
                 </div>
 
                 <!-- confirm password -->
-                <label class="bold">Confirm password</label>
-                <div class="input-group mb-3">
+                <label class="form-label">Confirm password</label>
+                <div class="input-group">
                     <span class="input-group-text">
                         <i class="fas fa-unlock"></i>
                     </span>
-                    {{ form.confirm_password(class="form-control", placeholder="Confirm password") }}
+                    {{ form.confirm_password(class="form-control", placeholder="confirme") }}
                 </div>
 
                 <!-- checkbox -->
-                {{ form.checkbox(class="mb-4") }}
-                <p class="d-inline ml-1">I agree to the terms and conditions</p>
+                <div class="form-check">
+                    {{ form.checkbox(class="form-check-input") }}
+                    <label class="form-check-label">Aceito responsabilidades de uso do sistema</label>
+                </div>
 
                 <!-- submit -->
-                {{ form.submit(class="d-block btn btn-primary mb-4", style="width: 100%;") }}
+                {{ form.submit(class="d-block btn btn-primary", style="width: 100%;") }}
 
             </form>
 
-            <p class="text-center">Already have an account? <a href="{{ url_for('auth_bp.login') }}">Login here</a></p>
+            <p class="login-link">Tudo certo? <a href="{{ url_for('auth_bp.login') }}">Voltar ao login</a></p>
 
         </div>
     </div>
