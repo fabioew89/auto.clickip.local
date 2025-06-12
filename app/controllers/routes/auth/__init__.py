@@ -41,7 +41,7 @@ def login():
             return redirect(url_for('int_summary_bp.interface_summary'))
 
         else:
-            flash('check your password or username', category='danger')
+            flash('Usuário ou senha inválidos', category='danger')
 
     if form.errors:
         for field_name, error_messages in form.errors.items():
