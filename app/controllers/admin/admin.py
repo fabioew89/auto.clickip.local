@@ -190,7 +190,7 @@ class UploadsFileAdmin(FileAdmin):
 
 
 def flask_admin():
-    admin.name = 'auto.clickip.local'
+    admin.name = ''
     admin.base_path = os.path.join(os.path.dirname(__file__), 'static')
     admin.base_url = '/static/'
 
@@ -205,5 +205,5 @@ def flask_admin():
 
     admin.add_view(UploadsFileAdmin(base_path=admin.base_path, name='Uploads'))
 
-    admin.add_link(AppLink(name='App', category=''))
-    admin.add_link(LogoutLink(name='Logout', category=''))
+    admin.add_link(AppLink(name='Aplicação', category=''))
+    admin.add_link(LogoutLink(name='Sair', category=''))
