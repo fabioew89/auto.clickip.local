@@ -32,7 +32,7 @@
   }
   .navbar-title i {
     margin-right: 12px;
-    color: #fff;
+    color: #04eb3d;
   }
   .nav-user {
     color: #bdbdbd;
@@ -101,7 +101,7 @@
 </style>
 
 <div class="navbar">
-    <span class="navbar-title"><i class="fas fa-user-shield"></i> Segurança</span>
+    <span class="navbar-title"><i class="fas fa-user-shield"></i> </span>
     <span class="nav-user">
         {% if current_user.is_authenticated %}
             <i class="fas fa-user"></i> {{ current_user.username }}
@@ -110,7 +110,7 @@
 </div>
 
 <div class="panel-content">
-    <div class="headline"><i class="fas fa-lock"></i> Painel de Autenticação</div>
+    <div class="headline"><i class="fas fa-lock"></i> Painel do administrador</div>
     {% if current_user.is_authenticated %}
         <div class="user-info">
             <i class="fas fa-user-check"></i>
@@ -123,7 +123,7 @@
     {% else %}
         <div class="not-auth">
             <i class="fas fa-exclamation-circle"></i>
-            voce nao está em modo admin
+            Usuário admin não autenticado
         </div>
     {% endif %}
 
