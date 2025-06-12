@@ -1,70 +1,17 @@
-## v0.20.0 (2025-04-22)
+## Unreleased
 
 ### Feat
 
 - **get_policy_whitelist**: add new feature, get policy prefix list whitelist
 - **set_policy_whitelist**: add new feature, set policy prefixlist whitelist-dst
 - **get_mpls_brief.html**: add new feat, but not ready yet, WIP
-
-### Fix
-
-- **flash_messages.html**: add z-index: 1 and delay time to 5s
-- **general_network_forms**: fix label to router
-- **app/controllers/forms/**: fix commitar to commit in some forms
-- **get_interface_ae0_config**: changed description order to ip_address, in some routes
-
-### Refactor
-
-- **app/controllers/admin/admin.py**: refact /admin
-
-## v0.19.0 (2025-04-15)
-
-### Feat
-
 - **sidebar.html**: add new link do mpls
 - **app/controllers/netmiko/dmos/get_mpls_brief.py**: add new feature, get_mpls_brief
-
-### Fix
-
-- **__init__.py**: delete all import, it no more necessary
-- **app/config.py**: changed NETMIKO_PORT to NETMIKO_SSH_PORT
-
-## v0.18.0 (2025-04-15)
-
-### Feat
-
 - **app/templates/includes/scripts.html**: changed place of the validate before submit a form to includes/scripts.html
 - **Makefile**: upt makefile with flake8 --ignore E501 error
-
-### Fix
-
-- **app/controllers/netmiko/dmos/mpls_seg_one.py**: WIP in mpls_seg_one.py
-- **app/controllers/forms/set_interface_ae0_unit_vlan.py**: comment IPAddress validate in set_interface_ae0_unit_vlan.py
-
-## v0.17.2 (2025-04-11)
-
-### Fix
-
-- **app/controllers/routes/junos/bgp_manager.py**: fix order of the show in bgp manager list
-
-## v0.17.1 (2025-04-09)
-
-### Fix
-
-- **app/templates/includes/sidebar.html**: fix url_for to set_interface_ae0_unit_vlan_bp
-- refactored imported to set_interface_ae0_unit_vlan
-- **app/templates/includes/sidebar.html**: unhidden set_interface_ae0_unit_vlan.py
-- **app/templates/includes/flash_messages.html**: refact flash_messages
-
-### Refactor
-
-- **set_interface_ae0_unit_vlan**: migrated to bs5 and refactored set_interface_ae0_unit_vlan
-- **app/templates/vendors/junos/set_interface_ae0_unit_vlan.html**: refact set_interface_ae0_unit_vlan to bs5
-
-## v0.17.0 (2025-04-08)
-
-### Feat
-
+- **app/templates/vendors/junos/bgp_manager.html**: add function to notify before of the commit
+- **app/controllers/routes/auth/__init__.py**: add feature to register users
+- **Makefile**: add host='0.0.0.0' in make run
 - **app/controllers/admin/admin.py**: add new link in flask-admin
 - **app/__init__.py**: upt with bootstrap4 in flask-admin
 - **app/controllers/admin/admin.py**: refact admin.py
@@ -74,174 +21,6 @@
 - **netmiko/junos/bgp_manager.py**: done, finally finished function to deactivate and activate neighbor in bgp protocol
 - **/app/config.py**: env_path to ensure load env
 - renamed app/controllers/blueprints to routes
-
-### Fix
-
-- **app/controllers/routes/junos/bgp_manager.py-and-get_interface_ae0_summary.py**: changed order_by to hostname and description
-- **app/controllers/admin/admin.py**: changed permission can_delete to True
-- **app/templates/includes/flash_messages.html**: added script action to fade flash and fixed-top class
-- **app/templates/includes/flash_messages.html**: add {% include 'includes/flash_messages.html' %}
-- **Makefile**: remvoe host='0.0.0.0' in Makefile
-- **create_admin.py**: upt add new field in create_admin, is_admin=True
-- add just a .gitkeep
-- **app/controllers/admin/admin.py**: add logout button in top header flask_admin
-- **app/templates/admin/index.html**: refactored /admin/index.html
-- **app/controllers/admin/admin.py**: add new menu link, logout
-- **app/models/__init__.py**: add is_admin = db.Column(db.Boolean, default=False)
-- **app/templates/admin/index.html**: del <li><a href="/admin/users/">Users</a></li>
-- **app/controllers/routes/auth/__init__.py**: redirect return to interface_summary
-- **app/templates/vendors/dmos/downstream_fec.html**: add endpoint in action form
-- **app/templates/includes/sidebar.html**: hidden menu items
-- adjusted get config to bs5
-- **app/controllers/forms/get_interface_ae0_summary.py**: delete enpty spaces
-- **livereloader.py**: upt livereloader.py
-- **base.html**: remove class container of the tag main
-- **bgp_manager.html**: script upt to refresh data with ajax
-- **bgp_manager.py**: finally configured to work with bgp manager
-- **footer.html**: not implemented yet
-- **main.js**: its not necessary
-- **setup.py**: upt version to 0.1.0
-- change bgp_manager_session name to bgp_manager
-- del bgp_manager.py of the __init__.py
-- upt form bgp_manager
-- upt bgp_manager.html
-- changed name bgp_manager_session.xyz to bgp_manager.xyz
-- upt flash_messages.html
-- del templates/vendors/junos/get_interface_ae0_summary.html tag </pre>
-- upt description forms/get_interface_ae0_summary.py
-- hulk smash
-- upt .env.example
-- upt app/config.py
-- add new folder in routes
-- caquinha :poop
-- upt sidebar.html
-- rename /interface_summary.py to /get_interface_ae0_summary.py
-- remove comments in app/controllers/netmiko/junos/get_interface_ae0_summary.py
-- upt app/templates/includes/sidebar.html with username in dropdown
-- upt livereloader.py
-- upt app/config.py
-- upt app/templates/base.html
-- upt livereloader
-- web_reloader is default false
-
-### Refactor
-
-- ****/*/downstream_fec.***: refact downstream_fec
-
-## v0.16.0 (2025-04-05)
-
-### Feat
-
-- **app/controllers/admin/admin.py**: add new link in flask-admin
-
-## v0.15.0 (2025-04-04)
-
-### Feat
-
-- **app/__init__.py**: upt with bootstrap4 in flask-admin
-
-## v0.14.0 (2025-04-04)
-
-### Feat
-
-- **app/controllers/admin/admin.py**: refact admin.py
-- **Makefile**: new functions in Makefile, add flask-migrate
-
-### Fix
-
-- **create_admin.py**: upt add new field in create_admin, is_admin=True
-- add just a .gitkeep
-
-## v0.13.0 (2025-04-02)
-
-### Feat
-
-- **app/controllers/admin/admin.py**: add new feature, fileadmin like uploads in admin painel
-- **app/templates/includes/sidebar.html**: add a button to close and open sidebar
-
-### Fix
-
-- **app/controllers/admin/admin.py**: add logout button in top header flask_admin
-- **app/templates/admin/index.html**: refactored /admin/index.html
-- **app/controllers/admin/admin.py**: add new menu link, logout
-- **app/models/__init__.py**: add is_admin = db.Column(db.Boolean, default=False)
-- **app/templates/admin/index.html**: del <li><a href="/admin/users/">Users</a></li>
-- **app/controllers/routes/auth/__init__.py**: redirect return to interface_summary
-- **app/templates/vendors/dmos/downstream_fec.html**: add endpoint in action form
-- **app/templates/includes/sidebar.html**: hidden menu items
-- adjusted get config to bs5
-- **app/controllers/forms/get_interface_ae0_summary.py**: delete enpty spaces
-- **livereloader.py**: upt livereloader.py
-- **base.html**: remove class container of the tag main
-
-### Refactor
-
-- ****/*/downstream_fec.***: refact downstream_fec
-
-## v0.12.0 (2025-03-27)
-
-### Feat
-
-- **netmiko/junos/bgp_manager.py**: done, finally finished function to deactivate and activate neighbor in bgp protocol
-
-### Fix
-
-- **bgp_manager.html**: script upt to refresh data with ajax
-- **bgp_manager.py**: finally configured to work with bgp manager
-- **footer.html**: not implemented yet
-- **main.js**: its not necessary
-- **setup.py**: upt version to 0.1.0
-
-## v0.11.0 (2025-03-27)
-
-### Feat
-
-- **/app/config.py**: env_path to ensure load env
-
-### Fix
-
-- change bgp_manager_session name to bgp_manager
-- del bgp_manager.py of the __init__.py
-- upt form bgp_manager
-- upt bgp_manager.html
-- changed name bgp_manager_session.xyz to bgp_manager.xyz
-
-## v0.1.0 (2025-03-25)
-
-## v0.10.1 (2025-03-25)
-
-### Fix
-
-- upt flash_messages.html
-- del templates/vendors/junos/get_interface_ae0_summary.html tag </pre>
-- upt description forms/get_interface_ae0_summary.py
-
-## v0.10.0 (2025-03-25)
-
-### Fix
-
-- hulk smash
-- upt .env.example
-- upt app/config.py
-- add new folder in routes
-- caquinha :poop
-- upt sidebar.html
-
-## v0.9.0 (2025-03-25)
-
-### Feat
-
-- renamed app/controllers/blueprints to routes
-
-### Fix
-
-- rename /interface_summary.py to /get_interface_ae0_summary.py
-- remove comments in app/controllers/netmiko/junos/get_interface_ae0_summary.py
-
-## v0.7.1 (2025-03-25)
-
-### Feat
-
 - add dropdown in end of sidebar
 - added commitizen like as requirements
 - add pyproject.toml
@@ -317,6 +96,64 @@
 
 ### Fix
 
+- att descricao no flash no auth/__init__.py
+- upt link top in /admin/admin.py
+- **flash_messages.html**: add z-index: 1 and delay time to 5s
+- **general_network_forms**: fix label to router
+- **app/controllers/forms/**: fix commitar to commit in some forms
+- **get_interface_ae0_config**: changed description order to ip_address, in some routes
+- **__init__.py**: delete all import, it no more necessary
+- **app/config.py**: changed NETMIKO_PORT to NETMIKO_SSH_PORT
+- **app/controllers/netmiko/dmos/mpls_seg_one.py**: WIP in mpls_seg_one.py
+- **app/controllers/forms/set_interface_ae0_unit_vlan.py**: comment IPAddress validate in set_interface_ae0_unit_vlan.py
+- **app/controllers/routes/junos/bgp_manager.py**: fix order of the show in bgp manager list
+- **Makefile**: remove flake with dependence of run
+- **app/controllers/forms/set_interface_ae0_unit_vlan.py**: changed placeholder ipv4_gw to Ex: 192.168.0.0/30
+- **app/controllers/forms/set_interface_ae0_unit_vlan.py**: fix description in ipv6 label
+- **app/templates/includes/sidebar.html**: fix url_for to set_interface_ae0_unit_vlan_bp
+- refactored imported to set_interface_ae0_unit_vlan
+- **app/templates/includes/sidebar.html**: unhidden set_interface_ae0_unit_vlan.py
+- **app/templates/includes/flash_messages.html**: refact flash_messages
+- **app/controllers/routes/junos/bgp_manager.py-and-get_interface_ae0_summary.py**: changed order_by to hostname and description
+- **app/controllers/admin/admin.py**: changed permission can_delete to True
+- **app/templates/includes/flash_messages.html**: added script action to fade flash and fixed-top class
+- **app/templates/includes/flash_messages.html**: add {% include 'includes/flash_messages.html' %}
+- **Makefile**: remvoe host='0.0.0.0' in Makefile
+- **create_admin.py**: upt add new field in create_admin, is_admin=True
+- add just a .gitkeep
+- **app/controllers/admin/admin.py**: add logout button in top header flask_admin
+- **app/templates/admin/index.html**: refactored /admin/index.html
+- **app/controllers/admin/admin.py**: add new menu link, logout
+- **app/models/__init__.py**: add is_admin = db.Column(db.Boolean, default=False)
+- **app/templates/admin/index.html**: del <li><a href="/admin/users/">Users</a></li>
+- **app/controllers/routes/auth/__init__.py**: redirect return to interface_summary
+- **app/templates/vendors/dmos/downstream_fec.html**: add endpoint in action form
+- **app/templates/includes/sidebar.html**: hidden menu items
+- adjusted get config to bs5
+- **app/controllers/forms/get_interface_ae0_summary.py**: delete enpty spaces
+- **livereloader.py**: upt livereloader.py
+- **base.html**: remove class container of the tag main
+- **bgp_manager.html**: script upt to refresh data with ajax
+- **bgp_manager.py**: finally configured to work with bgp manager
+- **footer.html**: not implemented yet
+- **main.js**: its not necessary
+- **setup.py**: upt version to 0.1.0
+- change bgp_manager_session name to bgp_manager
+- del bgp_manager.py of the __init__.py
+- upt form bgp_manager
+- upt bgp_manager.html
+- changed name bgp_manager_session.xyz to bgp_manager.xyz
+- upt flash_messages.html
+- del templates/vendors/junos/get_interface_ae0_summary.html tag </pre>
+- upt description forms/get_interface_ae0_summary.py
+- hulk smash
+- upt .env.example
+- upt app/config.py
+- add new folder in routes
+- caquinha :poop
+- upt sidebar.html
+- rename /interface_summary.py to /get_interface_ae0_summary.py
+- remove comments in app/controllers/netmiko/junos/get_interface_ae0_summary.py
 - upt app/templates/includes/sidebar.html with username in dropdown
 - upt livereloader.py
 - upt app/config.py
@@ -530,6 +367,10 @@
 
 ### Refactor
 
+- **app/controllers/admin/admin.py**: refact /admin
+- **set_interface_ae0_unit_vlan**: migrated to bs5 and refactored set_interface_ae0_unit_vlan
+- **app/templates/vendors/junos/set_interface_ae0_unit_vlan.html**: refact set_interface_ae0_unit_vlan to bs5
+- ****/*/downstream_fec.***: refact downstream_fec
 - improve blueprint structure and readability
 - add head.html template
 - change the layout of the web page
