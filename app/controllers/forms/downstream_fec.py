@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired
 
 class Downstream_fec_form(FlaskForm):
     hostname = SelectField(
-        'OLT', 
+        '',
         choices=[],
         validators=[DataRequired(message='Por favor, selecione uma OLT')]
     )
@@ -15,7 +15,7 @@ class Downstream_fec_form(FlaskForm):
     )
 
     slot = SelectField(
-        'slot', choices=[('1', '1'), ('2', '2')]
+        'slot', choices=[(str(i), str(i)) for i in range(1, 3)]
     )
 
     port_id = SelectField(
@@ -31,4 +31,4 @@ class Downstream_fec_form(FlaskForm):
         ],
     )
 
-    submit = SubmitField('Commit')
+    submit = SubmitField('Executar commit')
