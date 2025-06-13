@@ -1,10 +1,13 @@
 from flask_wtf import FlaskForm
 from wtforms import SelectField, SubmitField
+from wtforms.validators import DataRequired
 
 
 class Downstream_fec_form(FlaskForm):
     hostname = SelectField(
-        'OLT', choices=[]
+        'OLT', 
+        choices=[],
+        validators=[DataRequired(message='Por favor, selecione uma OLT')]
     )
 
     chassis = SelectField(
