@@ -19,8 +19,8 @@ fernet_key = Fernet(os.getenv('MY_FERNET_KEY'))
 @fresh_login_required
 def downstream_fec():
     form = Downstream_fec_form()
-    hosts = db.session.execute(db.select(Olts).order_by(Olts.id)).scalars()
-    form.hostname.choices = [(host.ip_address, host.hostname) for host in hosts]
+    hosts = db.session.execute(db.select(Olts).order_by(Olts.hostname)).scalars()
+    form.hostname.choices = [('', 'Selecione uma OLT')] + [(host.ip_address, host.hostname) for host in hosts]
 
     output = None
 
