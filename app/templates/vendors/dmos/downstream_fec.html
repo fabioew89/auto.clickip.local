@@ -9,12 +9,12 @@
     autocomplete="on">
     {{ form.hidden_tag() }}
 
-    <div class="row mb-3">
-        <div class="col">
-            <div class="form-floating">
-                {{ form.hostname(class="form-control searchable-select") }}
-                {{ form.hostname.label }}
-            </div>
+    <div class="mb-3">
+        <label class="form-label fw-semibold">
+            <i class="fas fa-server me-2 text-primary"></i>Selecionar OLT
+        </label>
+        <div class="position-relative" id="searchable-select-wrapper">
+            {{ form.hostname(class="form-control searchable-select") }}
         </div>
     </div>
 
@@ -54,23 +54,20 @@
 <pre class="border border-3 rounded-3 p-3">{{ output }}</pre>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const selectElement = document.querySelector('.searchable-select');
-    
+
     if (selectElement) {
-        // Criar container para o select customizado
         const container = document.createElement('div');
         container.className = 'searchable-select-container';
         container.style.position = 'relative';
-        
-        // Criar input de busca
+
         const searchInput = document.createElement('input');
         searchInput.type = 'text';
         searchInput.className = 'form-control searchable-input';
         searchInput.placeholder = '                   Escreva aqui para filtrar OLTs...';
         searchInput.style.marginBottom = '5px';
-        
-        // Criar lista de opções
+
         const optionsList = document.createElement('div');
         optionsList.className = 'searchable-options';
         optionsList.style.cssText = `
@@ -84,11 +81,26 @@ document.addEventListener('DOMContentLoaded', function() {
             z-index: 1000;
             display: none;
         `;
-        
-        // Armazenar todas as opções
-        const allOptions = Array.from(selectElement.options).slice(1); // Remove a primeira opção vazia
-        
-        // Função para criar item da lista
+
+        // Botão de limpar seleção
+        const limparBtn = document.createElement('button');
+        limparBtn.type = 'button';
+        limparBtn.className = 'btn btn-outline-secondary mt-2';
+        limparBtn.textContent = 'Limpar seleção';
+
+        // Função para limpar seleção
+        function limparSelecao() {
+            selectElement.value = '';
+            searchInput.value = '';
+            optionsList.style.display = 'none';
+
+            const event = new Event('change', { bubbles: true });
+            selectElement.dispatchEvent(event);
+        }
+        limparBtn.addEventListener('click', limparSelecao);
+
+        const allOptions = Array.from(selectElement.options).slice(1);
+
         function createOptionItem(option) {
             const item = document.createElement('div');
             item.className = 'searchable-option';
@@ -99,36 +111,34 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             item.textContent = option.text;
             item.dataset.value = option.value;
-            
-            item.addEventListener('mouseenter', function() {
+
+            item.addEventListener('mouseenter', function () {
                 this.style.backgroundColor = '#f8f9fa';
             });
-            
-            item.addEventListener('mouseleave', function() {
+
+            item.addEventListener('mouseleave', function () {
                 this.style.backgroundColor = 'white';
             });
-            
-            item.addEventListener('click', function() {
+
+            item.addEventListener('click', function () {
                 selectElement.value = this.dataset.value;
                 searchInput.value = this.textContent;
                 optionsList.style.display = 'none';
-                
-                // Disparar evento change no select original
+
                 const event = new Event('change', { bubbles: true });
                 selectElement.dispatchEvent(event);
             });
-            
+
             return item;
         }
-        
-        // Função para filtrar opções
+
         function filterOptions(searchTerm) {
             optionsList.innerHTML = '';
-            
-            const filteredOptions = allOptions.filter(option => 
+
+            const filteredOptions = allOptions.filter(option =>
                 option.text.toLowerCase().includes(searchTerm.toLowerCase())
             );
-            
+
             if (filteredOptions.length === 0) {
                 const noResults = document.createElement('div');
                 noResults.style.cssText = 'padding: 8px 12px; color: #6c757d; font-style: italic;';
@@ -140,43 +150,41 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         }
-        
-        // Event listeners
-        searchInput.addEventListener('input', function() {
+
+        searchInput.addEventListener('input', function () {
             const searchTerm = this.value;
             filterOptions(searchTerm);
             optionsList.style.display = searchTerm ? 'block' : 'none';
         });
-        
-        searchInput.addEventListener('focus', function() {
+
+        searchInput.addEventListener('focus', function () {
             if (this.value) {
                 filterOptions(this.value);
                 optionsList.style.display = 'block';
             }
         });
-        
-        // Fechar lista ao clicar fora
-        document.addEventListener('click', function(e) {
+
+        document.addEventListener('click', function (e) {
             if (!container.contains(e.target)) {
                 optionsList.style.display = 'none';
             }
         });
-        
-        // Configurar valor inicial se já selecionado
+
         if (selectElement.value) {
             const selectedOption = selectElement.options[selectElement.selectedIndex];
             searchInput.value = selectedOption.text;
         }
-        
-        // Inserir elementos no DOM
-        selectElement.parentNode.insertBefore(container, selectElement);
-        container.appendChild(searchInput);
-        container.appendChild(optionsList);
-        
-        // Esconder select original
+
+        const wrapper = document.getElementById('searchable-select-wrapper');
+        if (wrapper) {
+            wrapper.appendChild(container);
+            container.appendChild(searchInput);
+            container.appendChild(optionsList);
+            container.appendChild(limparBtn);
+        }
+
         selectElement.style.display = 'none';
-        
-        // Inicializar com todas as opções
+
         allOptions.forEach(option => {
             optionsList.appendChild(createOptionItem(option));
         });
